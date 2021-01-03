@@ -1155,7 +1155,7 @@ var Articulation = /** @class */ (function (_super) {
                 artic.position = modifier_1.Modifier.PositionString[position];
             return builder.getFactory().Articulation(artic);
         })
-            .map(function (artic) { return note.addModifier(0, artic); });
+            .map(function (artic) { return note.addModifier(artic, 0); });
     };
     Articulation.prototype.reset = function () {
         this.articulation = flow_1.articulationCodes(this.type);
@@ -17641,7 +17641,7 @@ var FretHandFinger = /** @class */ (function (_super) {
                 params.position = position;
             return builder.getFactory().Fingering(params);
         })
-            .map(function (fingering, index) { return note.addModifier(index, fingering); });
+            .map(function (fingering, index) { return note.addModifier(fingering, index); });
     };
     FretHandFinger.prototype.getCategory = function () {
         return FretHandFinger.CATEGORY;
@@ -25462,9 +25462,9 @@ var StaveNote = /** @class */ (function (_super) {
     // Generic function to add modifiers to a note
     //
     // Parameters:
-    // * `index`: The index of the key that we're modifying
     // * `modifier`: The modifier to add
-    StaveNote.prototype.addModifier = function (index, modifier) {
+    // * `index`: The index of the key that we're modifying
+    StaveNote.prototype.addModifier = function (modifier, index) {
         modifier.setNote(this);
         modifier.setIndex(index);
         this.modifiers.push(modifier);
@@ -25473,22 +25473,22 @@ var StaveNote = /** @class */ (function (_super) {
     };
     // Helper function to add an accidental to a key
     StaveNote.prototype.addAccidental = function (index, accidental) {
-        return this.addModifier(index, accidental);
+        return this.addModifier(accidental, index);
     };
     // Helper function to add an articulation to a key
     StaveNote.prototype.addArticulation = function (index, articulation) {
-        return this.addModifier(index, articulation);
+        return this.addModifier(articulation, index);
     };
     // Helper function to add an annotation to a key
     StaveNote.prototype.addAnnotation = function (index, annotation) {
-        return this.addModifier(index, annotation);
+        return this.addModifier(annotation, index);
     };
     // Helper function to add a dot on a specific key
     StaveNote.prototype.addDot = function (index) {
         var dot = new dot_1.Dot();
         dot.setDotShiftY(this.glyph.dot_shiftY);
         this.dots++;
-        return this.addModifier(index, dot);
+        return this.addModifier(dot, index);
     };
     // Convenience method to add dot to all keys in note
     StaveNote.prototype.addDotToAll = function () {

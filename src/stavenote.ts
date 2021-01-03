@@ -29,7 +29,7 @@ import {IGlyphProps} from "./types/glyph";
 import {IStaveNoteFormatSettings, IStaveNoteGetModifierStartXYOptions, IStaveNoteHeadBounds} from "./types/stavenote";
 import {IStemStruct} from "./types/stem";
 import {TickContext} from "./tickcontext";
-import {IModifier, INoteModifier, ModifierClass} from "./types/modifiercontext";
+import {IModifier, INoteModifier} from "./types/modifiercontext";
 import {RuntimeError} from "./runtimeerror";
 import {
   DEFAULT_NOTATION_FONT_SCALE,

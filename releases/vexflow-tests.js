@@ -1,5 +1,5 @@
 /**!
- * VexFlow 3.0.9 built on 2020-12-31.
+ * VexFlow 3.0.9 built on 2021-01-03.
  * Copyright (c) 2010 Mohit Muthanna Cheppudira <mohit@muthanna.com>
  *
  * http://www.vexflow.com  http://github.com/0xfe/vexflow
@@ -891,7 +891,7 @@ Vex.Flow.Test.Accidental = (function() {
       const gracenotes = [
         { keys: ['d#/4'], duration: '16', slash: true },
       ].map(vf.GraceNote.bind(vf));
-      notes[0].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes }).beamNotes());
+      notes[0].addModifier(vf.GraceNoteGroup({ notes: gracenotes }).beamNotes(), 0);
 
       const voice = vf.Voice()
         .setMode(Vex.Flow.Voice.Mode.SOFT)
@@ -1427,20 +1427,20 @@ VF.Test.Annotation = (function() {
       // Create some notes
       var notes = [
         new VF.StaveNote({ keys: ['a/3'], duration: '8' })
-          .addModifier(0, new VF.Annotation('good')
-            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM)),
+          .addModifier(new VF.Annotation('good')
+            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0),
 
         new VF.StaveNote({ keys: ['g/3'], duration: '8' })
-          .addModifier(0, new VF.Annotation('even')
-            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM)),
+          .addModifier(new VF.Annotation('even')
+            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0),
 
         new VF.StaveNote({ keys: ['c/4'], duration: '8' })
-          .addModifier(0, new VF.Annotation('under')
-            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM)),
+          .addModifier(new VF.Annotation('under')
+            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0),
 
         new VF.StaveNote({ keys: ['d/4'], duration: '8' })
-          .addModifier(0, new VF.Annotation('beam')
-            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM)),
+          .addModifier(new VF.Annotation('beam')
+            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0),
       ];
 
       var beam = new VF.Beam(notes.slice(1));
@@ -2982,7 +2982,7 @@ VF.Test.BachDemo = (function() {
       system.addConnector('singleRight');
       system.addConnector('singleLeft');
 
-      id('m1a').addModifier(0, vf.Fingering({ number: '5' }));
+      id('m1a').addModifier(vf.Fingering({ number: '5' }), 0);
 
       /*  Measure 2 */
       system = makeSystem(150);
@@ -2990,9 +2990,9 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('B3/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m2a').addModifier(0, vf.Articulation({ type: 'a.', position: 'above' }));
-      id('m2b').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m2c').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
+      id('m2a').addModifier(vf.Articulation({ type: 'a.', position: 'above' }), 0);
+      id('m2b').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m2c').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
 
       vf.Curve({
         from: id('m1a'),
@@ -3010,7 +3010,7 @@ VF.Test.BachDemo = (function() {
           ].reduce(concat)),
         ],
       });
-      id('m3a').addModifier(0, vf.Fingering({ number: '3', position: 'above' }));
+      id('m3a').addModifier(vf.Fingering({ number: '3', position: 'above' }), 0);
 
       system.addStave({ voices: [voice(notes('C4/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
@@ -3022,9 +3022,9 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('B3/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m4a').addModifier(0, vf.Articulation({ type: 'a.', position: 'above' }));
-      id('m4b').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m4c').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
+      id('m4a').addModifier(vf.Articulation({ type: 'a.', position: 'above' }), 0);
+      id('m4b').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m4c').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
 
       vf.Curve({
         from: id('m3a'),
@@ -3042,7 +3042,7 @@ VF.Test.BachDemo = (function() {
           ].reduce(concat)),
         ],
       });
-      id('m5a').addModifier(0, vf.Fingering({ number: '4', position: 'above' }));
+      id('m5a').addModifier(vf.Fingering({ number: '4', position: 'above' }), 0);
 
       system.addStave({ voices: [voice(notes('A3/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
@@ -3092,9 +3092,9 @@ VF.Test.BachDemo = (function() {
       system.addConnector('singleRight');
       system.addConnector('singleLeft');
 
-      id('m7a').addModifier(0, vf.Fingering({ number: '2', position: 'below' }));
-      id('m7b').addModifier(0, vf.Fingering({ number: '1' }));
-      id('m7c').addModifier(0, vf.Fingering({ number: '3', position: 'above' }));
+      id('m7a').addModifier(vf.Fingering({ number: '2', position: 'below' }), 0);
+      id('m7b').addModifier(vf.Fingering({ number: '1' }), 0);
+      id('m7c').addModifier(vf.Fingering({ number: '3', position: 'above' }), 0);
 
       /*  Measure 8 */
       system = makeSystem(180);
@@ -3111,8 +3111,8 @@ VF.Test.BachDemo = (function() {
       });
       system.addConnector('singleRight');
 
-      id('m8b').addModifier(0, vf.Fingering({ number: '1', position: 'above' }));
-      id('m8c').addModifier(0, vf.GraceNoteGroup({ notes: [grace] }));
+      id('m8b').addModifier(vf.Fingering({ number: '1', position: 'above' }), 0);
+      id('m8c').addModifier(vf.GraceNoteGroup({ notes: [grace] }), 0);
 
       vf.Curve({
         from: id('m7a'),
@@ -3141,7 +3141,7 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('B3/h, A3/q', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m9a').addModifier(0, vf.Fingering({ number: '5' }));
+      id('m9a').addModifier(vf.Fingering({ number: '5' }), 0);
 
       /*  Measure 10 */
       system = makeSystem(170);
@@ -3149,10 +3149,10 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('G3/q[id="m10d"], B3, G3', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m10a').addModifier(0, vf.Articulation({ type: 'a.', position: 'above' }));
-      id('m10b').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m10c').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m10d').addModifier(0, vf.Fingering({ number: '4' }));
+      id('m10a').addModifier(vf.Articulation({ type: 'a.', position: 'above' }), 0);
+      id('m10b').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m10c').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m10d').addModifier(vf.Fingering({ number: '4' }), 0);
 
       vf.Curve({
         from: id('m9a'),
@@ -3170,7 +3170,7 @@ VF.Test.BachDemo = (function() {
           ].reduce(concat)),
         ],
       });
-      id('m11a').addModifier(0, vf.Fingering({ number: '3', position: 'above' }));
+      id('m11a').addModifier(vf.Fingering({ number: '3', position: 'above' }), 0);
 
       system.addStave({ voices: [voice(notes('C4/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
@@ -3189,12 +3189,12 @@ VF.Test.BachDemo = (function() {
       });
       system.addConnector('singleRight');
 
-      id('m12a').addModifier(0, vf.Articulation({ type: 'a.', position: 'above' }));
-      id('m12b').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m12c').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
+      id('m12a').addModifier(vf.Articulation({ type: 'a.', position: 'above' }), 0);
+      id('m12b').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m12c').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
 
-      id('m12d').addModifier(0, vf.Fingering({ number: '2', position: 'above' }));
-      id('m12e').addModifier(0, vf.Fingering({ number: '4', position: 'above' }));
+      id('m12d').addModifier(vf.Fingering({ number: '2', position: 'above' }), 0);
+      id('m12e').addModifier(vf.Fingering({ number: '4', position: 'above' }), 0);
 
       vf.Curve({
         from: id('m11a'),
@@ -3223,9 +3223,9 @@ VF.Test.BachDemo = (function() {
       system.addConnector('singleRight');
       system.addConnector('singleLeft');
 
-      id('m13a').addModifier(0, vf.Fingering({ number: '4', position: 'above' }));
-      id('m13b').addModifier(0, vf.Fingering({ number: '1' }));
-      id('m13c').addModifier(0, vf.Fingering({ number: '3', position: 'above' }));
+      id('m13a').addModifier(vf.Fingering({ number: '4', position: 'above' }), 0);
+      id('m13b').addModifier(vf.Fingering({ number: '1' }), 0);
+      id('m13c').addModifier(vf.Fingering({ number: '3', position: 'above' }), 0);
 
       /*  Measure 14 */
       system = makeSystem(180);
@@ -3241,8 +3241,8 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('g3/h[id="m14a"], b3/q[id="m14b"]', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m14a').addModifier(0, vf.Fingering({ number: '2' }));
-      id('m14b').addModifier(0, vf.Fingering({ number: '1' }));
+      id('m14a').addModifier(vf.Fingering({ number: '2' }), 0);
+      id('m14b').addModifier(vf.Fingering({ number: '1' }), 0);
 
       /*  Measure 15 */
       system = makeSystem(180);
@@ -3258,8 +3258,8 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('c4/q[id="m15b"], d4, d3', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m15a').addModifier(0, vf.Fingering({ number: '2' }));
-      id('m15b').addModifier(0, vf.Fingering({ number: '2' }));
+      id('m15a').addModifier(vf.Fingering({ number: '2' }), 0);
+      id('m15b').addModifier(vf.Fingering({ number: '2' }), 0);
 
       /*  Measure 16 */
       system = makeSystem(130);
@@ -3275,8 +3275,8 @@ VF.Test.BachDemo = (function() {
         .setEndBarType(VF.Barline.type.REPEAT_END);
       system.addConnector('boldDoubleRight');
 
-      id('m16a').addModifier(0, vf.Fingering({ number: '1' }));
-      id('m16b').addModifier(0, vf.Fingering({ number: '1' }));
+      id('m16a').addModifier(vf.Fingering({ number: '1' }), 0);
+      id('m16b').addModifier(vf.Fingering({ number: '1' }), 0);
 
       vf.Curve({
         from: id('m13a'),
@@ -3306,7 +3306,7 @@ VF.Test.BachDemo = (function() {
       system.addConnector('boldDoubleLeft');
       system.addConnector('singleRight');
 
-      id('m17a').addModifier(0, vf.Fingering({ number: '5', position: 'above' }));
+      id('m17a').addModifier(vf.Fingering({ number: '5', position: 'above' }), 0);
 
       /* Measure 18 */
       system = makeSystem(180);
@@ -3322,7 +3322,7 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('f3/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m18a').addModifier(0, vf.Fingering({ number: '4', position: 'above' }));
+      id('m18a').addModifier(vf.Fingering({ number: '4', position: 'above' }), 0);
 
       vf.Curve({
         from: id('m17a'),
@@ -4001,11 +4001,11 @@ VF.Test.Beam = (function() {
       ];
 
       notes = notes.map(function(note) {
-        return vf.StaveNote(note).addModifier(0, vf.Annotation({ text: '1', vJustify: 'above' }));
+        return vf.StaveNote(note).addModifier(vf.Annotation({ text: '1', vJustify: 'above' }), 0);
       });
 
       notes2 = notes2.map(function(note) {
-        return vf.StaveNote(note).addModifier(0, vf.Annotation({ text: '3', vJustify: 'below' }));
+        return vf.StaveNote(note).addModifier(vf.Annotation({ text: '3', vJustify: 'below' }), 0);
       });
 
       vf.Beam({ notes: notes });
@@ -4050,11 +4050,11 @@ VF.Test.Beam = (function() {
       ];
 
       notes = notes.map(function(note) {
-        return vf.StaveNote(note).addModifier(0, vf.Articulation({ type: 'am', position: 'above' }));
+        return vf.StaveNote(note).addModifier(vf.Articulation({ type: 'am', position: 'above' }), 0);
       });
 
       notes2 = notes2.map(function(note) {
-        return vf.StaveNote(note).addModifier(0, vf.Articulation({ type: 'a>', position: 'below' }));
+        return vf.StaveNote(note).addModifier(vf.Articulation({ type: 'a>', position: 'below' }), 0);
       });
 
       vf.Beam({ notes: notes });
@@ -4387,7 +4387,7 @@ VF.Test.ChordSymbol = (function() {
       ctx.scale(1.5, 1.5); ctx.fillStyle = '#221'; ctx.strokeStyle = '#221';
 
       function newNote(keys, duration, chordSymbol) {
-        return new VF.StaveNote({ keys, duration }).addModifier(0, chordSymbol);
+        return new VF.StaveNote({ keys, duration }).addModifier(chordSymbol, 0);
       }
 
       function draw(chords, y) {
@@ -4490,7 +4490,7 @@ VF.Test.ChordSymbol = (function() {
       ctx.scale(1.5, 1.5); ctx.fillStyle = '#221'; ctx.strokeStyle = '#221';
 
       function newNote(keys, duration, chordSymbol) {
-        return new VF.StaveNote({ keys, duration }).addModifier(0, chordSymbol);
+        return new VF.StaveNote({ keys, duration }).addModifier(chordSymbol, 0);
       }
 
       function draw(c1, c2, y) {
@@ -4538,7 +4538,7 @@ VF.Test.ChordSymbol = (function() {
       ctx.scale(1.5, 1.5); ctx.fillStyle = '#221'; ctx.strokeStyle = '#221';
 
       function newNote(keys, duration, chordSymbol) {
-        return new VF.StaveNote({ keys, duration }).addModifier(0, chordSymbol);
+        return new VF.StaveNote({ keys, duration }).addModifier(chordSymbol, 0);
       }
 
       function draw(chords, y) {
@@ -4622,7 +4622,7 @@ VF.Test.ChordSymbol = (function() {
       ctx.scale(1.5, 1.5); ctx.fillStyle = '#221'; ctx.strokeStyle = '#221';
 
       function newNote(keys, duration, chordSymbol) {
-        return new VF.StaveNote({ keys, duration }).addModifier(0, chordSymbol);
+        return new VF.StaveNote({ keys, duration }).addModifier(chordSymbol, 0);
       }
 
       function draw(chord1, chord2, y) {
@@ -4684,8 +4684,8 @@ VF.Test.ChordSymbol = (function() {
 
       function newNote(keys, duration, chordSymbol1, chordSymbol2) {
         return new VF.StaveNote({ keys, duration })
-          .addModifier(0, chordSymbol1)
-          .addModifier(0, chordSymbol2);
+          .addModifier(chordSymbol1, 0)
+          .addModifier(chordSymbol2, 0);
       }
 
       function draw(chords, chords2, y) {
@@ -4741,7 +4741,7 @@ VF.Test.ChordSymbol = (function() {
       ctx.scale(1.5, 1.5); ctx.fillStyle = '#221'; ctx.strokeStyle = '#221';
 
       function newNote(keys, duration, chordSymbol) {
-        return new VF.StaveNote({ keys, duration }).addModifier(0, chordSymbol);
+        return new VF.StaveNote({ keys, duration }).addModifier(chordSymbol, 0);
       }
 
       function draw(chords, y) {
@@ -4782,7 +4782,7 @@ VF.Test.ChordSymbol = (function() {
       ctx.scale(1.5, 1.5); ctx.fillStyle = '#221'; ctx.strokeStyle = '#221';
 
       function newNote(keys, duration, chordSymbol) {
-        return new VF.StaveNote({ keys, duration, stem_direction: -1 }).addModifier(0, chordSymbol);
+        return new VF.StaveNote({ keys, duration, stem_direction: -1 }).addModifier(chordSymbol, 0);
       }
 
       function draw(chords, y) {
@@ -6622,16 +6622,16 @@ VF.Test.GraceNote = (function() {
 
       var notes = [
         vf.StaveNote({ keys: ['b/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes }).beamNotes(), 0),
         vf.StaveNote({ keys: ['c/5'], duration: '4', auto_stem: true })
           .addAccidental(0, vf.Accidental({ type: '#' }))
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes1 }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes1 }).beamNotes(), 0),
         vf.StaveNote({ keys: ['c/5', 'd/5'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes(), 0),
       ];
 
       var voice = vf.Voice()
@@ -6687,16 +6687,16 @@ VF.Test.GraceNote = (function() {
 
       const notes = [
         vf.StaveNote({ keys: ['b/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes0, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes0, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['c/5'], duration: '4', auto_stem: true })
           .addAccidental(0, vf.Accidental({ type: '#' }))
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes1, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes1, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['c/5', 'd/5'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes2, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes2, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes3, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes3, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes4, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes4, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true }),
       ];
 
@@ -6726,7 +6726,7 @@ VF.Test.GraceNote = (function() {
       function createNoteBlock(keys, stem_direction) {
         var notes = createNotes(vf.StaveNote.bind(vf), keys, stem_direction);
         var gracenotes = createNotes(vf.GraceNote.bind(vf), keys, stem_direction);
-        notes[0].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes }));
+        notes[0].addModifier(vf.GraceNoteGroup({ notes: gracenotes }), 0);
         return notes;
       }
 
@@ -6770,7 +6770,7 @@ VF.Test.GraceNote = (function() {
         var gracenotes = createBeamdNotes(vf.GraceNote.bind(vf), keys, stem_direction, beams, true, notesToBeam);
         var graceNoteGroup = vf.GraceNoteGroup({ notes: gracenotes });
         notesToBeam.map(graceNoteGroup.beamNotes.bind(graceNoteGroup));
-        bnotes[0].addModifier(0, graceNoteGroup);
+        bnotes[0].addModifier(graceNoteGroup, 0);
         return bnotes;
       }
 
@@ -6826,7 +6826,7 @@ VF.Test.GraceNote = (function() {
           gracenoteGroup.beamNotes(gnotes);
         });
 
-        notes[0].addModifier(0, gracenoteGroup);
+        notes[0].addModifier(gracenoteGroup, 0);
         return notes;
       }
 
@@ -6874,7 +6874,7 @@ VF.Test.GraceNote = (function() {
           gracenoteGroup.beamNotes(gnotes);
         });
 
-        notes[0].addModifier(0, gracenoteGroup);
+        notes[0].addModifier(gracenoteGroup, 0);
         return notes;
       }
 
@@ -6937,10 +6937,10 @@ VF.Test.GraceNote = (function() {
       gracenotes2[0].setStemDirection(-1);
       gracenotes2[0].addAccidental(0, vf.Accidental({ type: '#' }));
 
-      notes[1].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes());
-      notes[3].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes1 }));
-      notes2[1].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes());
-      notes2[5].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes());
+      notes[1].addModifier(vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes(), 0);
+      notes[3].addModifier(vf.GraceNoteGroup({ notes: gracenotes1 }), 0);
+      notes2[1].addModifier(vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes(), 0);
+      notes2[5].addModifier(vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes(), 0);
 
       var voice = vf.Voice()
         .setStrict(false)
@@ -7012,10 +7012,10 @@ VF.Test.GraceNote = (function() {
       gracenotes2[0].setStemDirection(-1);
       gracenotes2[0].addAccidental(0, vf.Accidental({ type: '#' }));
 
-      notes[1].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes());
-      notes[3].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes1 }));
-      notes2[1].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes());
-      notes2[5].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes());
+      notes[1].addModifier(vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes(), 0);
+      notes[3].addModifier(vf.GraceNoteGroup({ notes: gracenotes1 }), 0);
+      notes2[1].addModifier(vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes(), 0);
+      notes2[5].addModifier(vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes(), 0);
 
       var voice = vf.Voice()
         .setStrict(false)
@@ -8526,11 +8526,11 @@ VF.Test.NoteSubGroup = (function() {
       ].map(vf.StaveNote.bind(vf));
 
       function addAccidental(note, acc) {
-        return note.addModifier(0, vf.Accidental({ type: acc }));
+        return note.addModifier(vf.Accidental({ type: acc }), 0);
       }
 
       function addSubGroup(note, subNotes) {
-        return note.addModifier(0, vf.NoteSubGroup({ notes: subNotes }));
+        return note.addModifier(vf.NoteSubGroup({ notes: subNotes }), 0);
       }
 
       // {SubNotes} | {Accidental} | {StaveNote}
@@ -8594,10 +8594,10 @@ VF.Test.NoteSubGroup = (function() {
       ].map(vf.StaveNote.bind(vf));
 
       function addAccidental(note, accid) {
-        return note.addModifier(0, vf.Accidental({ type: accid }));
+        return note.addModifier(vf.Accidental({ type: accid }), 0);
       }
       function addSubGroup(note, subNotes) {
-        return note.addModifier(0, vf.NoteSubGroup({ notes: subNotes }));
+        return note.addModifier(vf.NoteSubGroup({ notes: subNotes }), 0);
       }
 
       addAccidental(notes1[1], '#');
@@ -8658,10 +8658,10 @@ VF.Test.NoteSubGroup = (function() {
       ].map(vf.StaveNote.bind(vf));
 
       function addAccidental(note, accid) {
-        return note.addModifier(0, vf.Accidental({ type: accid }));
+        return note.addModifier(vf.Accidental({ type: accid }), 0);
       }
       function addSubGroup(note, subNotes) {
-        return note.addModifier(0, vf.NoteSubGroup({ notes: subNotes }));
+        return note.addModifier(vf.NoteSubGroup({ notes: subNotes }), 0);
       }
 
       addAccidental(notes1[1], '#');
@@ -8740,10 +8740,10 @@ VF.Test.NoteSubGroup = (function() {
       vf.StaveConnector({ top_stave: stave1, bottom_stave: stave2, type: 'singleRight' });
 
       function addAccidental(note, acc) {
-        return note.addModifier(0, vf.Accidental({ type: acc }));
+        return note.addModifier(vf.Accidental({ type: acc }), 0);
       }
       function addSubGroup(note, subNotes) {
-        return note.addModifier(0, vf.NoteSubGroup({ notes: subNotes }));
+        return note.addModifier(vf.NoteSubGroup({ notes: subNotes }), 0);
       }
 
       vf.Beam({ notes: notes3.slice(1, 4) });
@@ -8830,19 +8830,19 @@ VF.Test.Ornament = (function() {
         new VF.StaveNote({ keys: ['f/4'], duration: '4', stem_direction: 1 }),
       ];
 
-      notesBar1[0].addModifier(0, new VF.Ornament('mordent'));
-      notesBar1[1].addModifier(0, new VF.Ornament('mordent_inverted'));
-      notesBar1[2].addModifier(0, new VF.Ornament('turn'));
-      notesBar1[3].addModifier(0, new VF.Ornament('turn_inverted'));
-      notesBar1[4].addModifier(0, new VF.Ornament('tr'));
-      notesBar1[5].addModifier(0, new VF.Ornament('upprall'));
-      notesBar1[6].addModifier(0, new VF.Ornament('downprall'));
-      notesBar1[7].addModifier(0, new VF.Ornament('prallup'));
-      notesBar1[8].addModifier(0, new VF.Ornament('pralldown'));
-      notesBar1[9].addModifier(0, new VF.Ornament('upmordent'));
-      notesBar1[10].addModifier(0, new VF.Ornament('downmordent'));
-      notesBar1[11].addModifier(0, new VF.Ornament('lineprall'));
-      notesBar1[12].addModifier(0, new VF.Ornament('prallprall'));
+      notesBar1[0].addModifier(new VF.Ornament('mordent'), 0);
+      notesBar1[1].addModifier(new VF.Ornament('mordent_inverted'), 0);
+      notesBar1[2].addModifier(new VF.Ornament('turn'), 0);
+      notesBar1[3].addModifier(new VF.Ornament('turn_inverted'), 0);
+      notesBar1[4].addModifier(new VF.Ornament('tr'), 0);
+      notesBar1[5].addModifier(new VF.Ornament('upprall'), 0);
+      notesBar1[6].addModifier(new VF.Ornament('downprall'), 0);
+      notesBar1[7].addModifier(new VF.Ornament('prallup'), 0);
+      notesBar1[8].addModifier(new VF.Ornament('pralldown'), 0);
+      notesBar1[9].addModifier(new VF.Ornament('upmordent'), 0);
+      notesBar1[10].addModifier(new VF.Ornament('downmordent'), 0);
+      notesBar1[11].addModifier(new VF.Ornament('lineprall'), 0);
+      notesBar1[12].addModifier(new VF.Ornament('prallprall'), 0);
 
       // Helper function to justify and draw a 4/4 voice
       VF.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
@@ -8873,19 +8873,19 @@ VF.Test.Ornament = (function() {
         new VF.StaveNote({ keys: ['a/4'], duration: '4', stem_direction: 1 }),
       ];
 
-      notesBar1[0].addModifier(0, new VF.Ornament('mordent'));
-      notesBar1[1].addModifier(0, new VF.Ornament('mordent_inverted'));
-      notesBar1[2].addModifier(0, new VF.Ornament('turn'));
-      notesBar1[3].addModifier(0, new VF.Ornament('turn_inverted'));
-      notesBar1[4].addModifier(0, new VF.Ornament('tr'));
-      notesBar1[5].addModifier(0, new VF.Ornament('upprall'));
-      notesBar1[6].addModifier(0, new VF.Ornament('downprall'));
-      notesBar1[7].addModifier(0, new VF.Ornament('prallup'));
-      notesBar1[8].addModifier(0, new VF.Ornament('pralldown'));
-      notesBar1[9].addModifier(0, new VF.Ornament('upmordent'));
-      notesBar1[10].addModifier(0, new VF.Ornament('downmordent'));
-      notesBar1[11].addModifier(0, new VF.Ornament('lineprall'));
-      notesBar1[12].addModifier(0, new VF.Ornament('prallprall'));
+      notesBar1[0].addModifier(new VF.Ornament('mordent'), 0);
+      notesBar1[1].addModifier(new VF.Ornament('mordent_inverted'), 0);
+      notesBar1[2].addModifier(new VF.Ornament('turn'), 0);
+      notesBar1[3].addModifier(new VF.Ornament('turn_inverted'), 0);
+      notesBar1[4].addModifier(new VF.Ornament('tr'), 0);
+      notesBar1[5].addModifier(new VF.Ornament('upprall'), 0);
+      notesBar1[6].addModifier(new VF.Ornament('downprall'), 0);
+      notesBar1[7].addModifier(new VF.Ornament('prallup'), 0);
+      notesBar1[8].addModifier(new VF.Ornament('pralldown'), 0);
+      notesBar1[9].addModifier(new VF.Ornament('upmordent'), 0);
+      notesBar1[10].addModifier(new VF.Ornament('downmordent'), 0);
+      notesBar1[11].addModifier(new VF.Ornament('lineprall'), 0);
+      notesBar1[12].addModifier(new VF.Ornament('prallprall'), 0);
 
       // Helper function to justify and draw a 4/4 voice
       VF.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
@@ -8907,10 +8907,10 @@ VF.Test.Ornament = (function() {
         new VF.StaveNote({ keys: ['a/4'], duration: '4', stem_direction: 1 }),
       ];
 
-      notesBar1[0].addModifier(0, new VF.Ornament('turn').setDelayed(true));
-      notesBar1[1].addModifier(0, new VF.Ornament('turn_inverted').setDelayed(true));
-      notesBar1[2].addModifier(0, new VF.Ornament('turn_inverted').setDelayed(true));
-      notesBar1[3].addModifier(0, new VF.Ornament('turn').setDelayed(true));
+      notesBar1[0].addModifier(new VF.Ornament('turn').setDelayed(true), 0);
+      notesBar1[1].addModifier(new VF.Ornament('turn_inverted').setDelayed(true), 0);
+      notesBar1[2].addModifier(new VF.Ornament('turn_inverted').setDelayed(true), 0);
+      notesBar1[3].addModifier(new VF.Ornament('turn').setDelayed(true), 0);
 
       // Helper function to justify and draw a 4/4 voice
       VF.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
@@ -8932,10 +8932,10 @@ VF.Test.Ornament = (function() {
         new VF.StaveNote({ keys: ['a/4'], duration: '4', stem_direction: 1 }),
       ];
 
-      notesBar1[0].addModifier(0, new VF.Ornament('turn').setDelayed(true));
-      notesBar1[1].addModifier(0, new VF.Ornament('turn_inverted').setDelayed(true));
-      notesBar1[2].addModifier(0, new VF.Ornament('turn_inverted').setDelayed(true));
-      notesBar1[3].addModifier(0, new VF.Ornament('turn').setDelayed(true));
+      notesBar1[0].addModifier(new VF.Ornament('turn').setDelayed(true), 0);
+      notesBar1[1].addModifier(new VF.Ornament('turn_inverted').setDelayed(true), 0);
+      notesBar1[2].addModifier(new VF.Ornament('turn_inverted').setDelayed(true), 0);
+      notesBar1[3].addModifier(new VF.Ornament('turn').setDelayed(true), 0);
 
       // Helper function to justify and draw a 4/4 voice
       VF.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
@@ -8958,15 +8958,15 @@ VF.Test.Ornament = (function() {
         new VF.StaveNote({ keys: ['a/4'], duration: '4', stem_direction: 1 }),
       ];
 
-      notesBar1[0].addModifier(0, new VF.Ornament('mordent'));
-      notesBar1[1].addModifier(0, new VF.Ornament('turn_inverted'));
-      notesBar1[2].addModifier(0, new VF.Ornament('turn'));
-      notesBar1[3].addModifier(0, new VF.Ornament('turn_inverted'));
+      notesBar1[0].addModifier(new VF.Ornament('mordent'), 0);
+      notesBar1[1].addModifier(new VF.Ornament('turn_inverted'), 0);
+      notesBar1[2].addModifier(new VF.Ornament('turn'), 0);
+      notesBar1[3].addModifier(new VF.Ornament('turn_inverted'), 0);
 
-      notesBar1[0].addModifier(0, new VF.Ornament('turn'));
-      notesBar1[1].addModifier(0, new VF.Ornament('prallup'));
-      notesBar1[2].addModifier(0, new VF.Ornament('upmordent'));
-      notesBar1[3].addModifier(0, new VF.Ornament('lineprall'));
+      notesBar1[0].addModifier(new VF.Ornament('turn'), 0);
+      notesBar1[1].addModifier(new VF.Ornament('prallup'), 0);
+      notesBar1[2].addModifier(new VF.Ornament('upmordent'), 0);
+      notesBar1[3].addModifier(new VF.Ornament('lineprall'), 0);
 
       // Helper function to justify and draw a 4/4 voice
       VF.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
@@ -8995,17 +8995,17 @@ VF.Test.Ornament = (function() {
         new VF.StaveNote({ keys: ['f/4'], duration: '4', stem_direction: 1 }),
       ];
 
-      notesBar1[0].addModifier(0, new VF.Ornament('mordent').setUpperAccidental('#').setLowerAccidental('#'));
-      notesBar1[1].addModifier(0, new VF.Ornament('turn_inverted').setLowerAccidental('b').setUpperAccidental('b'));
-      notesBar1[2].addModifier(0, new VF.Ornament('turn').setUpperAccidental('##').setLowerAccidental('##'));
-      notesBar1[3].addModifier(0, new VF.Ornament('mordent_inverted').setLowerAccidental('db').setUpperAccidental('db'));
-      notesBar1[4].addModifier(0, new VF.Ornament('turn_inverted').setUpperAccidental('++').setLowerAccidental('++'));
-      notesBar1[5].addModifier(0, new VF.Ornament('tr').setUpperAccidental('n').setLowerAccidental('n'));
-      notesBar1[6].addModifier(0, new VF.Ornament('prallup').setUpperAccidental('d').setLowerAccidental('d'));
-      notesBar1[7].addModifier(0, new VF.Ornament('lineprall').setUpperAccidental('db').setLowerAccidental('db'));
-      notesBar1[8].addModifier(0, new VF.Ornament('upmordent').setUpperAccidental('bbs').setLowerAccidental('bbs'));
-      notesBar1[9].addModifier(0, new VF.Ornament('prallprall').setUpperAccidental('bb').setLowerAccidental('bb'));
-      notesBar1[10].addModifier(0, new VF.Ornament('turn_inverted').setUpperAccidental('+').setLowerAccidental('+'));
+      notesBar1[0].addModifier(new VF.Ornament('mordent').setUpperAccidental('#').setLowerAccidental('#'), 0);
+      notesBar1[1].addModifier(new VF.Ornament('turn_inverted').setLowerAccidental('b').setUpperAccidental('b'), 0);
+      notesBar1[2].addModifier(new VF.Ornament('turn').setUpperAccidental('##').setLowerAccidental('##'), 0);
+      notesBar1[3].addModifier(new VF.Ornament('mordent_inverted').setLowerAccidental('db').setUpperAccidental('db'), 0);
+      notesBar1[4].addModifier(new VF.Ornament('turn_inverted').setUpperAccidental('++').setLowerAccidental('++'), 0);
+      notesBar1[5].addModifier(new VF.Ornament('tr').setUpperAccidental('n').setLowerAccidental('n'), 0);
+      notesBar1[6].addModifier(new VF.Ornament('prallup').setUpperAccidental('d').setLowerAccidental('d'), 0);
+      notesBar1[7].addModifier(new VF.Ornament('lineprall').setUpperAccidental('db').setLowerAccidental('db'), 0);
+      notesBar1[8].addModifier(new VF.Ornament('upmordent').setUpperAccidental('bbs').setLowerAccidental('bbs'), 0);
+      notesBar1[9].addModifier(new VF.Ornament('prallprall').setUpperAccidental('bb').setLowerAccidental('bb'), 0);
+      notesBar1[10].addModifier(new VF.Ornament('turn_inverted').setUpperAccidental('+').setLowerAccidental('+'), 0);
 
       // Helper function to justify and draw a 4/4 voice
       VF.Formatter.FormatAndDraw(ctx, staveBar1, notesBar1);
@@ -9020,7 +9020,7 @@ VF.Test.Ornament = (function() {
       function newNote(keys, duration, modifier, stemDirection) {
         const dot = duration.indexOf('d') >= 0;
         const rv =  new VF.StaveNote({ keys, duration, stem_direction: stemDirection })
-          .addModifier(0, modifier)
+          .addModifier(modifier, 0)
           .addAccidental(0, new VF.Accidental('b'));
         if (dot) {
           rv.addDotToAll();
@@ -9044,7 +9044,7 @@ VF.Test.Ornament = (function() {
         notes.push(newNote(keys, '4d', modifiers[2], stemDirection));
         notes.push(newNote(keys, '8', modifiers[3], stemDirection));
         if (modifiers.length > 4) {
-          notes[3].addModifier(0, modifiers[4]);
+          notes[3].addModifier(modifiers[4], 0);
         }
 
         VF.Beam.generateBeams(notes);
@@ -9439,13 +9439,13 @@ VF.Test.Percussion = (function() {
         vf.Voice().addTickables([
           vf.StaveNote({ keys: ['c/5'], duration: '4', stem_direction: -1 })
             .addArticulation(0, vf.Articulation({ type: 'a>' }))
-            .addModifier(0, vf.Annotation({ text: 'L' })),
+            .addModifier(vf.Annotation({ text: 'L' }), 0),
           vf.StaveNote({ keys: ['c/5'], duration: '4', stem_direction: -1 })
-            .addModifier(0, vf.Annotation({ text: 'R' })),
+            .addModifier(vf.Annotation({ text: 'R' }), 0),
           vf.StaveNote({ keys: ['c/5'], duration: '4', stem_direction: -1 })
-            .addModifier(0, vf.Annotation({ text: 'L' })),
+            .addModifier(vf.Annotation({ text: 'L' }), 0),
           vf.StaveNote({ keys: ['c/5'], duration: '4', stem_direction: -1 })
-            .addModifier(0, vf.Annotation({ text: 'L' })),
+            .addModifier(vf.Annotation({ text: 'L' }), 0),
         ]);
       }));
 
@@ -10227,8 +10227,8 @@ VF.Test.Rhythm = (function() {
         new VF.StaveNote({ keys: ['b/4'], duration: '8s', stem_direction: -1 }),
       ];
 
-      notesBar1_part1[0].addModifier(0, (new VF.Annotation('C7')).setFont(
-        'Times', VF.Test.Font.size + 2));
+      notesBar1_part1[0].addModifier((new VF.Annotation('C7')).setFont(
+        'Times', VF.Test.Font.size + 2), 0);
 
       var notesBar1_part2 = [
         new VF.StaveNote({
@@ -10280,8 +10280,8 @@ VF.Test.Rhythm = (function() {
         }),
       ];
 
-      notesBar2[0].addModifier(0, (new VF.Annotation('F')).setFont('Times',
-        VF.Test.Font.size + 2));
+      notesBar2[0].addModifier((new VF.Annotation('F')).setFont('Times',
+        VF.Test.Font.size + 2), 0);
       // Helper function to justify and draw a 4/4 voice
       VF.Formatter.FormatAndDraw(ctx, staveBar2, notesBar2);
 
@@ -10341,8 +10341,8 @@ VF.Test.Rhythm = (function() {
 
       ];
 
-      notesBar1_part1[0].addModifier(0, (new VF.Annotation('C7')).setFont(
-        'Times', VF.Test.Font.size + 3));
+      notesBar1_part1[0].addModifier((new VF.Annotation('C7')).setFont(
+        'Times', VF.Test.Font.size + 3), 0);
 
       // create the beams for 8th notes in 2nd measure
       var beam1 = new VF.Beam(notesBar1_part1);
@@ -10409,8 +10409,8 @@ VF.Test.Rhythm = (function() {
 
       ];
 
-      notesBar1_part1[0].addModifier(0, (new VF.Annotation('C7')).setFont(
-        'Times', VF.Test.Font.size + 3));
+      notesBar1_part1[0].addModifier((new VF.Annotation('C7')).setFont(
+        'Times', VF.Test.Font.size + 3), 0);
 
       // create the beams for 8th notes in 2nd measure
       var beam1 = new VF.Beam(notesBar1_part1);
@@ -13038,10 +13038,10 @@ VF.Test.StaveNote = (function() {
         .addAnnotation(0, new VF.Annotation('Test').setPosition(3))
         .addStroke(0, new VF.Stroke(2))
         .addAccidental(1, new VF.Accidental('#'))
-        .addModifier(0, newFinger('3', VF.Modifier.Position.LEFT))
-        .addModifier(2, newFinger('2', VF.Modifier.Position.LEFT))
-        .addModifier(1, newFinger('1', VF.Modifier.Position.RIGHT))
-        .addModifier(2, newStringNumber('4', VF.Modifier.Position.BELOW))
+        .addModifier(newFinger('3', VF.Modifier.Position.LEFT), 0)
+        .addModifier(newFinger('2', VF.Modifier.Position.LEFT), 2)
+        .addModifier(newFinger('1', VF.Modifier.Position.RIGHT), 1)
+        .addModifier(newStringNumber('4', VF.Modifier.Position.BELOW), 2)
         .addDotToAll();
 
       var voice = vf.Voice()
@@ -13264,27 +13264,27 @@ VF.Test.StringNumber = (function() {
       );
 
       notes1[0]
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'right' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'left' }))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'right' }));
+        .addModifier(vf.StringNumber({ number: '5', position: 'right' }), 0)
+        .addModifier(vf.StringNumber({ number: '4', position: 'left' }), 1)
+        .addModifier(vf.StringNumber({ number: '3', position: 'right' }), 2);
 
       notes1[1]
         .addAccidental(0, vf.Accidental({ type: '#' }))
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'below' }))
+        .addModifier(vf.StringNumber({ number: '5', position: 'below' }), 0)
         .addAccidental(1, vf.Accidental({ type: '#' }).setAsCautionary())
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'above' })
+        .addModifier(vf.StringNumber({ number: '3', position: 'above' })
           .setLastNote(notes1[3])
-          .setLineEndType(VF.Renderer.LineEndType.DOWN));
+          .setLineEndType(VF.Renderer.LineEndType.DOWN), 2);
 
       notes1[2]
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'left' }))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'left' }))
+        .addModifier(vf.StringNumber({ number: '5', position: 'left' }), 0)
+        .addModifier(vf.StringNumber({ number: '3', position: 'left' }), 2)
         .addAccidental(1, vf.Accidental({ type: '#' }));
 
       notes1[3]
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'right' }).setOffsetY(7))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'right' }).setOffsetY(6))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'right' }).setOffsetY(-6));
+        .addModifier(vf.StringNumber({ number: '5', position: 'right' }).setOffsetY(7), 0)
+        .addModifier(vf.StringNumber({ number: '4', position: 'right' }).setOffsetY(6), 1)
+        .addModifier(vf.StringNumber({ number: '3', position: 'right' }).setOffsetY(-6), 2);
 
       var voice1 = score.voice(notes1);
 
@@ -13302,24 +13302,24 @@ VF.Test.StringNumber = (function() {
       );
 
       notes2[0]
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'right' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'left' }))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'right' }));
+        .addModifier(vf.StringNumber({ number: '5', position: 'right' }), 0)
+        .addModifier(vf.StringNumber({ number: '4', position: 'left' }), 1)
+        .addModifier(vf.StringNumber({ number: '3', position: 'right' }), 2);
 
       notes2[1]
         .addAccidental(0, vf.Accidental({ type: '#' }))
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'below' }))
+        .addModifier(vf.StringNumber({ number: '5', position: 'below' }), 0)
         .addAccidental(1, vf.Accidental({ type: '#' }))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'above' }).setLastNote(notes2[3]).setDashed(false));
+        .addModifier(vf.StringNumber({ number: '3', position: 'above' }).setLastNote(notes2[3]).setDashed(false), 2);
 
       notes2[2]
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'left' }))
+        .addModifier(vf.StringNumber({ number: '3', position: 'left' }), 2)
         .addAccidental(1, vf.Accidental({ type: '#' }));
 
       notes2[3]
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'right' }).setOffsetY(7))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'right' }).setOffsetY(6))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'right' }).setOffsetY(-6));
+        .addModifier(vf.StringNumber({ number: '5', position: 'right' }).setOffsetY(7), 0)
+        .addModifier(vf.StringNumber({ number: '4', position: 'right' }).setOffsetY(6), 1)
+        .addModifier(vf.StringNumber({ number: '3', position: 'right' }).setOffsetY(-6), 2);
 
       var voice2 = score.voice(notes2);
 
@@ -13334,10 +13334,10 @@ VF.Test.StringNumber = (function() {
       var notesBar3 = score.notes('(c4 e4 g4 a4)/1.');
 
       notesBar3[0]
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'below' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'right' }))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'left' }))
-        .addModifier(3, vf.StringNumber({ number: '2', position: 'above' }));
+        .addModifier(vf.StringNumber({ number: '5', position: 'below' }), 0)
+        .addModifier(vf.StringNumber({ number: '4', position: 'right' }), 1)
+        .addModifier(vf.StringNumber({ number: '3', position: 'left' }), 2)
+        .addModifier(vf.StringNumber({ number: '2', position: 'above' }), 3);
 
       var voice3 = score.voice(notesBar3, { time: '6/4' });
 
@@ -13365,31 +13365,31 @@ VF.Test.StringNumber = (function() {
       );
 
       notes1[0]
-        .addModifier(0, vf.Fingering({ number: '3', position: 'left' }))
-        .addModifier(1, vf.Fingering({ number: '2', position: 'left' }))
-        .addModifier(2, vf.Fingering({ number: '0', position: 'left' }));
+        .addModifier(vf.Fingering({ number: '3', position: 'left' }), 0)
+        .addModifier(vf.Fingering({ number: '2', position: 'left' }), 1)
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 2);
 
       notes1[1]
         .addAccidental(0, vf.Accidental({ type: '#' }))
-        .addModifier(0, vf.Fingering({ number: '3', position: 'left' }))
-        .addModifier(1, vf.Fingering({ number: '2', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '3', position: 'left' }), 0)
+        .addModifier(vf.Fingering({ number: '2', position: 'left' }), 1)
         .addAccidental(1, vf.Accidental({ type: '#' }))
-        .addModifier(2, vf.Fingering({ number: '0', position: 'left' }));
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 2);
 
       notes1[2]
-        .addModifier(0, vf.Fingering({ number: '3', position: 'below' }))
-        .addModifier(1, vf.Fingering({ number: '4', position: 'left' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'left' }))
-        .addModifier(2, vf.Fingering({ number: '0', position: 'above' }))
+        .addModifier(vf.Fingering({ number: '3', position: 'below' }), 0)
+        .addModifier(vf.Fingering({ number: '4', position: 'left' }), 1)
+        .addModifier(vf.StringNumber({ number: '4', position: 'left' }), 1)
+        .addModifier(vf.Fingering({ number: '0', position: 'above' }), 2)
         .addAccidental(1, vf.Accidental({ type: '#' }));
 
       notes1[3]
-        .addModifier(0, vf.Fingering({ number: '3', position: 'right' }))
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'right' }).setOffsetY(7))
-        .addModifier(1, vf.Fingering({ number: '4', position: 'right' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'right' }).setOffsetY(6))
-        .addModifier(2, vf.Fingering({ number: '0', position: 'right' }).setOffsetY(-5))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'right' }).setOffsetY(-6));
+        .addModifier(vf.Fingering({ number: '3', position: 'right' }), 0)
+        .addModifier(vf.StringNumber({ number: '5', position: 'right' }).setOffsetY(7), 0)
+        .addModifier(vf.Fingering({ number: '4', position: 'right' }), 1)
+        .addModifier(vf.StringNumber({ number: '4', position: 'right' }).setOffsetY(6), 1)
+        .addModifier(vf.Fingering({ number: '0', position: 'right' }).setOffsetY(-5), 2)
+        .addModifier(vf.StringNumber({ number: '3', position: 'right' }).setOffsetY(-6), 2);
 
       var voice1 = score.voice(notes1);
 
@@ -13407,32 +13407,32 @@ VF.Test.StringNumber = (function() {
       );
 
       notes2[0]
-        .addModifier(0, vf.Fingering({ number: '3', position: 'right' }))
-        .addModifier(1, vf.Fingering({ number: '2', position: 'left' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'right' }))
-        .addModifier(2, vf.Fingering({ number: '0', position: 'above' }));
+        .addModifier(vf.Fingering({ number: '3', position: 'right' }), 0)
+        .addModifier(vf.Fingering({ number: '2', position: 'left' }), 1)
+        .addModifier(vf.StringNumber({ number: '4', position: 'right' }), 1)
+        .addModifier(vf.Fingering({ number: '0', position: 'above' }), 2);
 
       notes2[1]
         .addAccidental(0, vf.Accidental({ type: '#' }))
-        .addModifier(0, vf.Fingering({ number: '3', position: 'right' }))
-        .addModifier(1, vf.Fingering({ number: '2', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '3', position: 'right' }), 0)
+        .addModifier(vf.Fingering({ number: '2', position: 'left' }), 1)
         .addAccidental(1, vf.Accidental({ type: '#' }))
-        .addModifier(2, vf.Fingering({ number: '0', position: 'left' }));
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 2);
 
       notes2[2]
-        .addModifier(0, vf.Fingering({ number: '3', position: 'below' }))
-        .addModifier(1, vf.Fingering({ number: '2', position: 'left' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'left' }))
-        .addModifier(2, vf.Fingering({ number: '1', position: 'right' }))
+        .addModifier(vf.Fingering({ number: '3', position: 'below' }), 0)
+        .addModifier(vf.Fingering({ number: '2', position: 'left' }), 1)
+        .addModifier(vf.StringNumber({ number: '4', position: 'left' }), 1)
+        .addModifier(vf.Fingering({ number: '1', position: 'right' }), 2)
         .addAccidental(2, vf.Accidental({ type: '#' }));
 
       notes2[3]
-        .addModifier(0, vf.Fingering({ number: '3', position: 'right' }))
-        .addModifier(0, vf.StringNumber({ number: '5', position: 'right' }).setOffsetY(7))
-        .addModifier(1, vf.Fingering({ number: '4', position: 'right' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'right' }).setOffsetY(6))
-        .addModifier(2, vf.Fingering({ number: '1', position: 'right' }).setOffsetY(-6))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'right' }).setOffsetY(-6));
+        .addModifier(vf.Fingering({ number: '3', position: 'right' }), 0)
+        .addModifier(vf.StringNumber({ number: '5', position: 'right' }).setOffsetY(7), 0)
+        .addModifier(vf.Fingering({ number: '4', position: 'right' }), 1)
+        .addModifier(vf.StringNumber({ number: '4', position: 'right' }).setOffsetY(6), 1)
+        .addModifier(vf.Fingering({ number: '1', position: 'right' }).setOffsetY(-6), 2)
+        .addModifier(vf.StringNumber({ number: '3', position: 'right' }).setOffsetY(-6), 2);
 
       var voice2 = score.voice(notes2);
 
@@ -13457,48 +13457,48 @@ VF.Test.StringNumber = (function() {
 
       notes1[0]
         .addStroke(0, new VF.Stroke(5))
-        .addModifier(0, vf.Fingering({ number: '3', position: 'left' }))
-        .addModifier(1, vf.Fingering({ number: '2', position: 'left' }))
-        .addModifier(2, vf.Fingering({ number: '0', position: 'left' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'left' }))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'above' }));
+        .addModifier(vf.Fingering({ number: '3', position: 'left' }), 0)
+        .addModifier(vf.Fingering({ number: '2', position: 'left' }), 1)
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 2)
+        .addModifier(vf.StringNumber({ number: '4', position: 'left' }), 1)
+        .addModifier(vf.StringNumber({ number: '3', position: 'above' }), 2);
 
       notes1[1]
         .addStroke(0, new VF.Stroke(6))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'right' }))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'above' }))
+        .addModifier(vf.StringNumber({ number: '4', position: 'right' }), 1)
+        .addModifier(vf.StringNumber({ number: '3', position: 'above' }), 2)
         .addAccidental(0, vf.Accidental({ type: '#' }))
         .addAccidental(1, vf.Accidental({ type: '#' }))
         .addAccidental(2, vf.Accidental({ type: '#' }));
 
       notes1[2]
         .addStroke(0, new VF.Stroke(2))
-        .addModifier(0, vf.Fingering({ number: '3', position: 'left' }))
-        .addModifier(1, vf.Fingering({ number: '0', position: 'right' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'right' }))
-        .addModifier(2, vf.Fingering({ number: '1', position: 'left' }))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'right' }));
+        .addModifier(vf.Fingering({ number: '3', position: 'left' }), 0)
+        .addModifier(vf.Fingering({ number: '0', position: 'right' }), 1)
+        .addModifier(vf.StringNumber({ number: '4', position: 'right' }), 1)
+        .addModifier(vf.Fingering({ number: '1', position: 'left' }), 2)
+        .addModifier(vf.StringNumber({ number: '3', position: 'right' }), 2);
 
       notes1[3]
         .addStroke(0, new VF.Stroke(1))
-        .addModifier(2, vf.StringNumber({ number: '3', position: 'left' }))
-        .addModifier(1, vf.StringNumber({ number: '4', position: 'right' }));
+        .addModifier(vf.StringNumber({ number: '3', position: 'left' }), 2)
+        .addModifier(vf.StringNumber({ number: '4', position: 'right' }), 1);
 
       var notes2 = score.notes('e3/8, e3, e3, e3, e3, e3, e3, e3', { stem: 'down' });
 
       notes2[0]
-        .addModifier(0, vf.Fingering({ number: '0', position: 'left' }))
-        .addModifier(0, vf.StringNumber({ number: '6', position: 'below' }));
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0)
+        .addModifier(vf.StringNumber({ number: '6', position: 'below' }), 0);
 
       notes2[2]
         .addAccidental(0, vf.Accidental({ type: '#' }));
 
       notes2[4]
-        .addModifier(0, vf.Fingering({ number: '0', position: 'left' }));
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0);
 
       // Position string number 6 beneath the strum arrow: left (15) and down (18)
       notes2[4]
-        .addModifier(0, vf.StringNumber({ number: '6', position: 'left' }).setOffsetX(15).setOffsetY(18));
+        .addModifier(vf.StringNumber({ number: '6', position: 'left' }).setOffsetX(15).setOffsetY(18), 0);
 
       var voices = [notes1, notes2].map(score.voice.bind(score));
 
@@ -13529,19 +13529,19 @@ VF.Test.StringNumber = (function() {
       ];
 
       notes[0]
-        .addModifier(0, vf.Fingering({ number: '3', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '3', position: 'left' }), 0)
         .addAccidental(0, vf.Accidental({ type: '#' }))
-        .addModifier(1, vf.Fingering({ number: '2', position: 'left' }))
-        .addModifier(1, vf.StringNumber({ number: '2', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '2', position: 'left' }), 1)
+        .addModifier(vf.StringNumber({ number: '2', position: 'left' }), 1)
         .addAccidental(1, vf.Accidental({ type: '#' }))
-        .addModifier(2, vf.Fingering({ number: '0', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 2)
         .addAccidental(2, vf.Accidental({ type: '#' }))
-        .addModifier(3, vf.Fingering({ number: '3', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '3', position: 'left' }), 3)
         .addAccidental(3, vf.Accidental({ type: '#' }))
-        .addModifier(4, vf.Fingering({ number: '2', position: 'right' }))
-        .addModifier(4, vf.StringNumber({ number: '3', position: 'right' }))
+        .addModifier(vf.Fingering({ number: '2', position: 'right' }), 4)
+        .addModifier(vf.StringNumber({ number: '3', position: 'right' }), 4)
         .addAccidental(4, vf.Accidental({ type: '#' }))
-        .addModifier(5, vf.Fingering({ number: '0', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 5)
         .addAccidental(5, vf.Accidental({ type: '#' }));
 
       notes[1]
@@ -13553,19 +13553,19 @@ VF.Test.StringNumber = (function() {
         .addAccidental(5, vf.Accidental({ type: '#' }));
 
       notes[2]
-        .addModifier(0, vf.Fingering({ number: '3', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '3', position: 'left' }), 0)
         .addAccidental(0, vf.Accidental({ type: '#' }))
-        .addModifier(1, vf.Fingering({ number: '2', position: 'left' }))
-        .addModifier(1, vf.StringNumber({ number: '2', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '2', position: 'left' }), 1)
+        .addModifier(vf.StringNumber({ number: '2', position: 'left' }), 1)
         .addAccidental(1, vf.Accidental({ type: '#' }))
-        .addModifier(2, vf.Fingering({ number: '0', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 2)
         .addAccidental(2, vf.Accidental({ type: '#' }))
-        .addModifier(3, vf.Fingering({ number: '3', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '3', position: 'left' }), 3)
         .addAccidental(3, vf.Accidental({ type: '#' }))
-        .addModifier(4, vf.Fingering({ number: '2', position: 'right' }))
-        .addModifier(4, vf.StringNumber({ number: '3', position: 'right' }))
+        .addModifier(vf.Fingering({ number: '2', position: 'right' }), 4)
+        .addModifier(vf.StringNumber({ number: '3', position: 'right' }), 4)
         .addAccidental(4, vf.Accidental({ type: '#' }))
-        .addModifier(5, vf.Fingering({ number: '0', position: 'left' }))
+        .addModifier(vf.Fingering({ number: '0', position: 'left' }), 5)
         .addAccidental(5, vf.Accidental({ type: '#' }));
 
       notes[3]
@@ -13704,12 +13704,12 @@ VF.Test.Strokes = (function() {
       notes1[2]
         .addStroke(0, new VF.Stroke(7))
         .addAccidental(1, vf.Accidental({ type: 'b' }))
-        .addModifier(0, graceNoteGroup);
+        .addModifier(graceNoteGroup, 0);
       notes1[3]
         .addStroke(0, new VF.Stroke(7))
-        .addModifier(0, vf.NoteSubGroup({ notes: [
+        .addModifier(vf.NoteSubGroup({ notes: [
           vf.ClefNote({ type: 'treble', options: { size: 'default', annotation: '8va' } }),
-        ] }));
+        ] }), 0);
 
       var voice1 = score.voice(notes1);
 
@@ -14079,11 +14079,11 @@ VF.Test.Style = (function() {
       var mods1 = notes[1].getModifiers();
       mods1[0].setStyle(FS('green'));
       notes[0].addArticulation(0, new VF.Articulation('a.').setPosition(4).setStyle(FS('green')));
-      notes[0].addModifier(0, new VF.Ornament('mordent').setStyle(FS('lightgreen')));
+      notes[0].addModifier(new VF.Ornament('mordent').setStyle(FS('lightgreen')), 0);
 
-      notes[1].addModifier(0, new VF.Annotation('blue').setStyle(FS('blue')));
-      notes[1].addModifier(0,
-        new VF.NoteSubGroup([vf.ClefNote({ options: { size: 'small' } }).setStyle(FS('blue'))]));
+      notes[1].addModifier(new VF.Annotation('blue').setStyle(FS('blue')), 0);
+      notes[1].addModifier(
+        new VF.NoteSubGroup([vf.ClefNote({ options: { size: 'small' } }).setStyle(FS('blue'))]), 0);
 
       var voice = vf.Voice().addTickables(notes);
 
@@ -15249,12 +15249,12 @@ VF.Test.ThreeVoices = (function() {
         function(vf, voices) {
           voices[0]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '0', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0);
 
           voices[1]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '0', position: 'left' }))
-            .addModifier(1, vf.Fingering({ number: '4', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0)
+            .addModifier(vf.Fingering({ number: '4', position: 'left' }), 1);
         }
       ));
 
@@ -15265,13 +15265,13 @@ VF.Test.ThreeVoices = (function() {
         function(vf, voices) {
           voices[0]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '2', position: 'left' }))
-            .addModifier(1, vf.Fingering({ number: '0', position: 'above' }));
+            .addModifier(vf.Fingering({ number: '2', position: 'left' }), 0)
+            .addModifier(vf.Fingering({ number: '0', position: 'above' }), 1);
 
           voices[1]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '0', position: 'left' }))
-            .addModifier(1, vf.Fingering({ number: '4', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0)
+            .addModifier(vf.Fingering({ number: '4', position: 'left' }), 1);
         }
       ));
 
@@ -15282,16 +15282,16 @@ VF.Test.ThreeVoices = (function() {
         function(vf, voices) {
           voices[0]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '0', position: 'left' }))
-            .addModifier(1, vf.Fingering({ number: '0', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0)
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 1);
 
           voices[1]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '1', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '1', position: 'left' }), 0);
 
           voices[2]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '3', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '3', position: 'left' }), 0);
         }
       ));
 

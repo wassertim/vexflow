@@ -22,7 +22,7 @@ import {IGlyphProps} from "./types/glyph";
 import {ITabNotePositon} from "./types/tabnote";
 import {Glyph} from "./glyph";
 import {Stroke} from "./strokes";
-import {IModifier, INoteModifier, ModifierClass} from "./types/modifiercontext";
+import {INoteModifier} from "./types/modifiercontext";
 import {Dot} from "./dot";
 import {RuntimeError} from "./runtimeerror";
 import {drawDot, durationToTicks, getGlyphProps} from "./flow";
