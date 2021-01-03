@@ -8,6 +8,7 @@ import {StaveNote} from "./stavenote";
 import {Builder} from "./easyscore";
 import {IFont} from "./types/font";
 import {RuntimeError} from "./runtimeerror";
+import {ModifierClass} from "./types/modifiercontext";
 
 /**
  * @constructor
@@ -111,7 +112,7 @@ export class FretHandFinger extends Modifier {
         if (position) params.position = position;
         return builder.getFactory().Fingering(params);
       })
-      .map((fingering: Modifier, index: number) => note.addModifier(index, fingering));
+      .map((fingering: FretHandFinger, index: number) => note.addModifier(fingering, index));
   }
 
   constructor(number: string) {

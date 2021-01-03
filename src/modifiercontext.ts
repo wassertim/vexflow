@@ -20,8 +20,8 @@ import {Bend} from './bend';
 import {Vibrato} from './vibrato';
 import {IModifierContextState} from "./types/common";
 import {
-  IModifierContextMetrics,
-  ModifierClass,
+  IModifier,
+  IModifierContextMetrics, INoteModifier,
   PostformatModifierType,
   PreformatModifierType
 } from "./types/modifiercontext";
@@ -40,7 +40,7 @@ export class ModifierContext {
 
   private readonly postFormatted: boolean;
   private readonly spacing: number;
-  private readonly modifiers: Record<string, ModifierClass[]>;
+  private readonly modifiers: Record<string, IModifier[]>;
 
   private preFormatted: boolean;
   private width: number;
@@ -87,7 +87,7 @@ export class ModifierContext {
     this.POSTFORMAT = [StaveNote];
   }
 
-  addModifier(modifier: ModifierClass): this {
+  addModifier(modifier: INoteModifier): this {
     const type = modifier.getCategory();
     if (!this.modifiers[type]) this.modifiers[type] = [];
     this.modifiers[type].push(modifier);
@@ -96,7 +96,7 @@ export class ModifierContext {
     return this;
   }
 
-  getModifiers(type: string): ModifierClass[] {
+  getModifiers(type: string): IModifier[] {
     return this.modifiers[type];
   }
 

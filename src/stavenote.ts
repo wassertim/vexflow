@@ -29,7 +29,7 @@ import {IGlyphProps} from "./types/glyph";
 import {IStaveNoteFormatSettings, IStaveNoteGetModifierStartXYOptions, IStaveNoteHeadBounds} from "./types/stavenote";
 import {IStemStruct} from "./types/stem";
 import {TickContext} from "./tickcontext";
-import {ModifierClass} from "./types/modifiercontext";
+import {IModifier, INoteModifier, ModifierClass} from "./types/modifiercontext";
 import {RuntimeError} from "./runtimeerror";
 import {
   DEFAULT_NOTATION_FONT_SCALE,
@@ -862,9 +862,9 @@ export class StaveNote extends StemmableNote {
   // Generic function to add modifiers to a note
   //
   // Parameters:
-  // * `index`: The index of the key that we're modifying
   // * `modifier`: The modifier to add
-  addModifier(index: any, modifier: any): this {
+  // * `index`: The index of the key that we're modifying
+  addModifier(modifier: INoteModifier, index: number): this {
     modifier.setNote(this);
     modifier.setIndex(index);
     this.modifiers.push(modifier);
@@ -874,17 +874,17 @@ export class StaveNote extends StemmableNote {
 
   // Helper function to add an accidental to a key
   addAccidental(index: number, accidental: Modifier): this {
-    return this.addModifier(index, accidental);
+    return this.addModifier(accidental, index);
   }
 
   // Helper function to add an articulation to a key
   addArticulation(index: number, articulation: Modifier): this {
-    return this.addModifier(index, articulation);
+    return this.addModifier(articulation, index);
   }
 
   // Helper function to add an annotation to a key
   addAnnotation(index: number, annotation: Modifier): this {
-    return this.addModifier(index, annotation);
+    return this.addModifier(annotation, index);
   }
 
   // Helper function to add a dot on a specific key
@@ -892,7 +892,7 @@ export class StaveNote extends StemmableNote {
     const dot = new Dot();
     dot.setDotShiftY((this.glyph as IGlyphProps).dot_shiftY);
     this.dots++;
-    return this.addModifier(index, dot);
+    return this.addModifier(dot, index);
   }
 
   // Convenience method to add dot to all keys in note
@@ -904,7 +904,7 @@ export class StaveNote extends StemmableNote {
   }
 
   // Get all accidentals in the `ModifierContext`
-  getAccidentals(): ModifierClass[] {
+  getAccidentals(): IModifier[] {
     return this.modifierContext.getModifiers('accidentals');
   }
 

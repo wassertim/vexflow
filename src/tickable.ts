@@ -10,7 +10,7 @@ import {Tuplet} from "./tuplet";
 import {ModifierContext} from "./modifiercontext";
 import {TickContext} from "./tickcontext";
 import {IFormatterMetrics} from "./types/formatter";
-import {ModifierClass} from "./types/modifiercontext";
+import {IModifier, INoteModifier, ModifierClass} from "./types/modifiercontext";
 import {RESOLUTION} from "./flow";
 import {RuntimeError} from "./runtimeerror";
 
@@ -28,7 +28,7 @@ export class Tickable extends Element {
   protected postFormatted: boolean;
   protected modifierContext: ModifierContext | TickContext;
   protected tickContext: TickContext;
-  protected modifiers: ModifierClass[];
+  protected modifiers: INoteModifier[];
 
   private readonly tickMultiplier: Fraction;
   private readonly formatterMetrics: IFormatterMetrics;
@@ -232,13 +232,13 @@ export class Tickable extends Element {
   }
 
   /** optional, if tickable has modifiers **/
-  addModifier(mod: ModifierClass): this {
+  addModifier(mod: INoteModifier): this {
     this.modifiers.push(mod);
     this.preFormatted = false;
     return this;
   }
 
-  getModifiers(): ModifierClass[] {
+  getModifiers(): IModifier[] {
     return this.modifiers;
   }
 

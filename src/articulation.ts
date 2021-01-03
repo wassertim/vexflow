@@ -245,7 +245,7 @@ export class Articulation extends Modifier {
         if (position) artic.position = Modifier.PositionString[position] as any;
         return builder.getFactory().Articulation(artic);
       })
-      .map((artic: Modifier) => note.addModifier(0, artic));
+      .map((artic: Modifier) => note.addModifier(artic, 0));
   }
 
   // Create a new articulation of type `type`, which is an entry in

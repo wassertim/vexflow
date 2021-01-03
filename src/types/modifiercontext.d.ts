@@ -12,13 +12,29 @@ import {Annotation} from "../annotation";
 import {ChordSymbol} from "../chordsymbol";
 import {Bend} from "../bend";
 import {Vibrato} from "../vibrato";
+import type {Note} from "../note";
+import {ModifierContext} from "../modifiercontext";
+import {DrawContext} from "./common";
 
 export interface IModifierContextMetrics {
   width: number;
   spacing: number;
 }
 
-export type PreformatModifierType = typeof StaveNote |
+export interface IModifier {
+  getCategory(): string;
+}
+
+export interface INoteModifier extends IModifier {
+  setNote(note: Note): void;
+  setIndex(index: number): void;
+  setModifierContext(ctx: ModifierContext): void;
+  setContext(ctx: DrawContext): void;
+  drawWithStyle(): void;
+}
+
+export type PreformatModifierType =
+  typeof StaveNote |
   typeof Dot |
   typeof FretHandFinger |
   typeof Accidental |
@@ -35,7 +51,8 @@ export type PreformatModifierType = typeof StaveNote |
 
 export type PostformatModifierType = typeof StaveNote;
 
-export type ModifierClass = StaveNote |
+export type ModifierClass =
+  StaveNote |
   Dot |
   FretHandFinger |
   Accidental |

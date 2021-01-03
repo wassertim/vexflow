@@ -22,7 +22,7 @@ import {IGlyphProps} from "./types/glyph";
 import {ITabNotePositon} from "./types/tabnote";
 import {Glyph} from "./glyph";
 import {Stroke} from "./strokes";
-import {ModifierClass} from "./types/modifiercontext";
+import {IModifier, INoteModifier, ModifierClass} from "./types/modifiercontext";
 import {Dot} from "./dot";
 import {RuntimeError} from "./runtimeerror";
 import {drawDot, durationToTicks, getGlyphProps} from "./flow";
@@ -448,7 +448,7 @@ export class Note extends Tickable {
   }
 
   // Attach a modifier to this note.
-  addModifier(modifier: ModifierClass, index = 0): this {
+  addModifier(modifier: INoteModifier, index = 0): this {
     (modifier as Dot).setNote(this);
     (modifier as Dot).setIndex(index);
     this.modifiers.push(modifier);
