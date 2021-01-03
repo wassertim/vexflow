@@ -54,12 +54,12 @@ VF.Test.ThreeVoices = (function() {
         function(vf, voices) {
           voices[0]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '0', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0);
 
           voices[1]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '0', position: 'left' }))
-            .addModifier(1, vf.Fingering({ number: '4', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0)
+            .addModifier(vf.Fingering({ number: '4', position: 'left' }), 1);
         }
       ));
 
@@ -70,13 +70,13 @@ VF.Test.ThreeVoices = (function() {
         function(vf, voices) {
           voices[0]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '2', position: 'left' }))
-            .addModifier(1, vf.Fingering({ number: '0', position: 'above' }));
+            .addModifier(vf.Fingering({ number: '2', position: 'left' }), 0)
+            .addModifier(vf.Fingering({ number: '0', position: 'above' }), 1);
 
           voices[1]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '0', position: 'left' }))
-            .addModifier(1, vf.Fingering({ number: '4', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0)
+            .addModifier(vf.Fingering({ number: '4', position: 'left' }), 1);
         }
       ));
 
@@ -87,16 +87,16 @@ VF.Test.ThreeVoices = (function() {
         function(vf, voices) {
           voices[0]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '0', position: 'left' }))
-            .addModifier(1, vf.Fingering({ number: '0', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 0)
+            .addModifier(vf.Fingering({ number: '0', position: 'left' }), 1);
 
           voices[1]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '1', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '1', position: 'left' }), 0);
 
           voices[2]
             .getTickables()[0]
-            .addModifier(0, vf.Fingering({ number: '3', position: 'left' }));
+            .addModifier(vf.Fingering({ number: '3', position: 'left' }), 0);
         }
       ));
 

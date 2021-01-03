@@ -59,7 +59,7 @@ VF.Test.BachDemo = (function() {
       system.addConnector('singleRight');
       system.addConnector('singleLeft');
 
-      id('m1a').addModifier(0, vf.Fingering({ number: '5' }));
+      id('m1a').addModifier(vf.Fingering({ number: '5' }), 0);
 
       /*  Measure 2 */
       system = makeSystem(150);
@@ -67,9 +67,9 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('B3/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m2a').addModifier(0, vf.Articulation({ type: 'a.', position: 'above' }));
-      id('m2b').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m2c').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
+      id('m2a').addModifier(vf.Articulation({ type: 'a.', position: 'above' }), 0);
+      id('m2b').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m2c').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
 
       vf.Curve({
         from: id('m1a'),
@@ -87,7 +87,7 @@ VF.Test.BachDemo = (function() {
           ].reduce(concat)),
         ],
       });
-      id('m3a').addModifier(0, vf.Fingering({ number: '3', position: 'above' }));
+      id('m3a').addModifier(vf.Fingering({ number: '3', position: 'above' }), 0);
 
       system.addStave({ voices: [voice(notes('C4/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
@@ -99,9 +99,9 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('B3/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m4a').addModifier(0, vf.Articulation({ type: 'a.', position: 'above' }));
-      id('m4b').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m4c').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
+      id('m4a').addModifier(vf.Articulation({ type: 'a.', position: 'above' }), 0);
+      id('m4b').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m4c').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
 
       vf.Curve({
         from: id('m3a'),
@@ -119,7 +119,7 @@ VF.Test.BachDemo = (function() {
           ].reduce(concat)),
         ],
       });
-      id('m5a').addModifier(0, vf.Fingering({ number: '4', position: 'above' }));
+      id('m5a').addModifier(vf.Fingering({ number: '4', position: 'above' }), 0);
 
       system.addStave({ voices: [voice(notes('A3/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
@@ -169,9 +169,9 @@ VF.Test.BachDemo = (function() {
       system.addConnector('singleRight');
       system.addConnector('singleLeft');
 
-      id('m7a').addModifier(0, vf.Fingering({ number: '2', position: 'below' }));
-      id('m7b').addModifier(0, vf.Fingering({ number: '1' }));
-      id('m7c').addModifier(0, vf.Fingering({ number: '3', position: 'above' }));
+      id('m7a').addModifier(vf.Fingering({ number: '2', position: 'below' }), 0);
+      id('m7b').addModifier(vf.Fingering({ number: '1' }), 0);
+      id('m7c').addModifier(vf.Fingering({ number: '3', position: 'above' }), 0);
 
       /*  Measure 8 */
       system = makeSystem(180);
@@ -188,8 +188,8 @@ VF.Test.BachDemo = (function() {
       });
       system.addConnector('singleRight');
 
-      id('m8b').addModifier(0, vf.Fingering({ number: '1', position: 'above' }));
-      id('m8c').addModifier(0, vf.GraceNoteGroup({ notes: [grace] }));
+      id('m8b').addModifier(vf.Fingering({ number: '1', position: 'above' }), 0);
+      id('m8c').addModifier(vf.GraceNoteGroup({ notes: [grace] }), 0);
 
       vf.Curve({
         from: id('m7a'),
@@ -218,7 +218,7 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('B3/h, A3/q', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m9a').addModifier(0, vf.Fingering({ number: '5' }));
+      id('m9a').addModifier(vf.Fingering({ number: '5' }), 0);
 
       /*  Measure 10 */
       system = makeSystem(170);
@@ -226,10 +226,10 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('G3/q[id="m10d"], B3, G3', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m10a').addModifier(0, vf.Articulation({ type: 'a.', position: 'above' }));
-      id('m10b').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m10c').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m10d').addModifier(0, vf.Fingering({ number: '4' }));
+      id('m10a').addModifier(vf.Articulation({ type: 'a.', position: 'above' }), 0);
+      id('m10b').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m10c').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m10d').addModifier(vf.Fingering({ number: '4' }), 0);
 
       vf.Curve({
         from: id('m9a'),
@@ -247,7 +247,7 @@ VF.Test.BachDemo = (function() {
           ].reduce(concat)),
         ],
       });
-      id('m11a').addModifier(0, vf.Fingering({ number: '3', position: 'above' }));
+      id('m11a').addModifier(vf.Fingering({ number: '3', position: 'above' }), 0);
 
       system.addStave({ voices: [voice(notes('C4/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
@@ -266,12 +266,12 @@ VF.Test.BachDemo = (function() {
       });
       system.addConnector('singleRight');
 
-      id('m12a').addModifier(0, vf.Articulation({ type: 'a.', position: 'above' }));
-      id('m12b').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
-      id('m12c').addModifier(0, vf.Articulation({ type: 'a.', position: 'below' }));
+      id('m12a').addModifier(vf.Articulation({ type: 'a.', position: 'above' }), 0);
+      id('m12b').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
+      id('m12c').addModifier(vf.Articulation({ type: 'a.', position: 'below' }), 0);
 
-      id('m12d').addModifier(0, vf.Fingering({ number: '2', position: 'above' }));
-      id('m12e').addModifier(0, vf.Fingering({ number: '4', position: 'above' }));
+      id('m12d').addModifier(vf.Fingering({ number: '2', position: 'above' }), 0);
+      id('m12e').addModifier(vf.Fingering({ number: '4', position: 'above' }), 0);
 
       vf.Curve({
         from: id('m11a'),
@@ -300,9 +300,9 @@ VF.Test.BachDemo = (function() {
       system.addConnector('singleRight');
       system.addConnector('singleLeft');
 
-      id('m13a').addModifier(0, vf.Fingering({ number: '4', position: 'above' }));
-      id('m13b').addModifier(0, vf.Fingering({ number: '1' }));
-      id('m13c').addModifier(0, vf.Fingering({ number: '3', position: 'above' }));
+      id('m13a').addModifier(vf.Fingering({ number: '4', position: 'above' }), 0);
+      id('m13b').addModifier(vf.Fingering({ number: '1' }), 0);
+      id('m13c').addModifier(vf.Fingering({ number: '3', position: 'above' }), 0);
 
       /*  Measure 14 */
       system = makeSystem(180);
@@ -318,8 +318,8 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('g3/h[id="m14a"], b3/q[id="m14b"]', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m14a').addModifier(0, vf.Fingering({ number: '2' }));
-      id('m14b').addModifier(0, vf.Fingering({ number: '1' }));
+      id('m14a').addModifier(vf.Fingering({ number: '2' }), 0);
+      id('m14b').addModifier(vf.Fingering({ number: '1' }), 0);
 
       /*  Measure 15 */
       system = makeSystem(180);
@@ -335,8 +335,8 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('c4/q[id="m15b"], d4, d3', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m15a').addModifier(0, vf.Fingering({ number: '2' }));
-      id('m15b').addModifier(0, vf.Fingering({ number: '2' }));
+      id('m15a').addModifier(vf.Fingering({ number: '2' }), 0);
+      id('m15b').addModifier(vf.Fingering({ number: '2' }), 0);
 
       /*  Measure 16 */
       system = makeSystem(130);
@@ -352,8 +352,8 @@ VF.Test.BachDemo = (function() {
         .setEndBarType(VF.Barline.type.REPEAT_END);
       system.addConnector('boldDoubleRight');
 
-      id('m16a').addModifier(0, vf.Fingering({ number: '1' }));
-      id('m16b').addModifier(0, vf.Fingering({ number: '1' }));
+      id('m16a').addModifier(vf.Fingering({ number: '1' }), 0);
+      id('m16b').addModifier(vf.Fingering({ number: '1' }), 0);
 
       vf.Curve({
         from: id('m13a'),
@@ -383,7 +383,7 @@ VF.Test.BachDemo = (function() {
       system.addConnector('boldDoubleLeft');
       system.addConnector('singleRight');
 
-      id('m17a').addModifier(0, vf.Fingering({ number: '5', position: 'above' }));
+      id('m17a').addModifier(vf.Fingering({ number: '5', position: 'above' }), 0);
 
       /* Measure 18 */
       system = makeSystem(180);
@@ -399,7 +399,7 @@ VF.Test.BachDemo = (function() {
       system.addStave({ voices: [voice(notes('f3/h.', { clef: 'bass' }))] });
       system.addConnector('singleRight');
 
-      id('m18a').addModifier(0, vf.Fingering({ number: '4', position: 'above' }));
+      id('m18a').addModifier(vf.Fingering({ number: '4', position: 'above' }), 0);
 
       vf.Curve({
         from: id('m17a'),

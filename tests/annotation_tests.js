@@ -180,20 +180,20 @@ VF.Test.Annotation = (function() {
       // Create some notes
       var notes = [
         new VF.StaveNote({ keys: ['a/3'], duration: '8' })
-          .addModifier(0, new VF.Annotation('good')
-            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM)),
+          .addModifier(new VF.Annotation('good')
+            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0),
 
         new VF.StaveNote({ keys: ['g/3'], duration: '8' })
-          .addModifier(0, new VF.Annotation('even')
-            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM)),
+          .addModifier(new VF.Annotation('even')
+            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0),
 
         new VF.StaveNote({ keys: ['c/4'], duration: '8' })
-          .addModifier(0, new VF.Annotation('under')
-            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM)),
+          .addModifier(new VF.Annotation('under')
+            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0),
 
         new VF.StaveNote({ keys: ['d/4'], duration: '8' })
-          .addModifier(0, new VF.Annotation('beam')
-            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM)),
+          .addModifier(new VF.Annotation('beam')
+            .setVerticalJustification(VF.Annotation.VerticalJustify.BOTTOM), 0),
       ];
 
       var beam = new VF.Beam(notes.slice(1));

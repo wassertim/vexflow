@@ -69,16 +69,16 @@ VF.Test.GraceNote = (function() {
 
       var notes = [
         vf.StaveNote({ keys: ['b/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes }).beamNotes(), 0),
         vf.StaveNote({ keys: ['c/5'], duration: '4', auto_stem: true })
           .addAccidental(0, vf.Accidental({ type: '#' }))
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes1 }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes1 }).beamNotes(), 0),
         vf.StaveNote({ keys: ['c/5', 'd/5'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes(), 0),
       ];
 
       var voice = vf.Voice()
@@ -134,16 +134,16 @@ VF.Test.GraceNote = (function() {
 
       const notes = [
         vf.StaveNote({ keys: ['b/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes0, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes0, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['c/5'], duration: '4', auto_stem: true })
           .addAccidental(0, vf.Accidental({ type: '#' }))
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes1, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes1, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['c/5', 'd/5'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes2, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes2, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes3, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes3, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true })
-          .addModifier(0, vf.GraceNoteGroup({ notes: gracenotes4, slur: true }).beamNotes()),
+          .addModifier(vf.GraceNoteGroup({ notes: gracenotes4, slur: true }).beamNotes(), 0),
         vf.StaveNote({ keys: ['a/4'], duration: '4', auto_stem: true }),
       ];
 
@@ -173,7 +173,7 @@ VF.Test.GraceNote = (function() {
       function createNoteBlock(keys, stem_direction) {
         var notes = createNotes(vf.StaveNote.bind(vf), keys, stem_direction);
         var gracenotes = createNotes(vf.GraceNote.bind(vf), keys, stem_direction);
-        notes[0].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes }));
+        notes[0].addModifier(vf.GraceNoteGroup({ notes: gracenotes }), 0);
         return notes;
       }
 
@@ -217,7 +217,7 @@ VF.Test.GraceNote = (function() {
         var gracenotes = createBeamdNotes(vf.GraceNote.bind(vf), keys, stem_direction, beams, true, notesToBeam);
         var graceNoteGroup = vf.GraceNoteGroup({ notes: gracenotes });
         notesToBeam.map(graceNoteGroup.beamNotes.bind(graceNoteGroup));
-        bnotes[0].addModifier(0, graceNoteGroup);
+        bnotes[0].addModifier(graceNoteGroup, 0);
         return bnotes;
       }
 
@@ -273,7 +273,7 @@ VF.Test.GraceNote = (function() {
           gracenoteGroup.beamNotes(gnotes);
         });
 
-        notes[0].addModifier(0, gracenoteGroup);
+        notes[0].addModifier(gracenoteGroup, 0);
         return notes;
       }
 
@@ -321,7 +321,7 @@ VF.Test.GraceNote = (function() {
           gracenoteGroup.beamNotes(gnotes);
         });
 
-        notes[0].addModifier(0, gracenoteGroup);
+        notes[0].addModifier(gracenoteGroup, 0);
         return notes;
       }
 
@@ -384,10 +384,10 @@ VF.Test.GraceNote = (function() {
       gracenotes2[0].setStemDirection(-1);
       gracenotes2[0].addAccidental(0, vf.Accidental({ type: '#' }));
 
-      notes[1].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes());
-      notes[3].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes1 }));
-      notes2[1].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes());
-      notes2[5].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes());
+      notes[1].addModifier(vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes(), 0);
+      notes[3].addModifier(vf.GraceNoteGroup({ notes: gracenotes1 }), 0);
+      notes2[1].addModifier(vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes(), 0);
+      notes2[5].addModifier(vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes(), 0);
 
       var voice = vf.Voice()
         .setStrict(false)
@@ -459,10 +459,10 @@ VF.Test.GraceNote = (function() {
       gracenotes2[0].setStemDirection(-1);
       gracenotes2[0].addAccidental(0, vf.Accidental({ type: '#' }));
 
-      notes[1].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes());
-      notes[3].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes1 }));
-      notes2[1].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes());
-      notes2[5].addModifier(0, vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes());
+      notes[1].addModifier(vf.GraceNoteGroup({ notes: gracenotes4 }).beamNotes(), 0);
+      notes[3].addModifier(vf.GraceNoteGroup({ notes: gracenotes1 }), 0);
+      notes2[1].addModifier(vf.GraceNoteGroup({ notes: gracenotes2 }).beamNotes(), 0);
+      notes2[5].addModifier(vf.GraceNoteGroup({ notes: gracenotes3 }).beamNotes(), 0);
 
       var voice = vf.Voice()
         .setStrict(false)

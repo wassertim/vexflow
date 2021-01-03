@@ -137,7 +137,7 @@ export class GraceNoteGroup extends Modifier {
     this.preFormatted = true;
   }
 
-  beamNotes(grace_notes: GraceNote[]): this {
+  beamNotes(grace_notes?: GraceNote[]): this {
     grace_notes = grace_notes || this.grace_notes;
     if (grace_notes.length > 1) {
       const beam = new Beam(grace_notes);
