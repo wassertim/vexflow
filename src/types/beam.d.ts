@@ -26,7 +26,7 @@ export interface IGenerateBeamConfig {
   flat_beams: boolean;
   secondary_breaks: string;
   show_stemlets: boolean;
-  maintain_stem_directions: StaveNote;
+  maintain_stem_directions: boolean;
   beam_middle_only: boolean;
   beam_rests: boolean;
   groups: Fraction[];

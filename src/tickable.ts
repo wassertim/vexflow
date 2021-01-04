@@ -21,6 +21,7 @@ export class Tickable extends Element {
   ticks: Fraction;
   center_x_shift: number;
   voice: Voice;
+  modifiers: ModifierClass[];
 
   protected width: number;
   protected x_shift: number;
@@ -28,7 +29,6 @@ export class Tickable extends Element {
   protected postFormatted: boolean;
   protected modifierContext: ModifierContext | TickContext;
   protected tickContext: TickContext;
-  protected modifiers: ModifierClass[];
 
   private readonly tickMultiplier: Fraction;
   private readonly formatterMetrics: IFormatterMetrics;

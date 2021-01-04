@@ -10,7 +10,8 @@ export enum Type {
   BEGIN = 2,
   MID = 3,
   END = 4,
-  BEGIN_END = 5
+  BEGIN_END = 5,
+  BEGIN_MID = 6
 }
 
 export class Volta extends StaveModifier {

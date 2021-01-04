@@ -13,6 +13,10 @@
     "browser": true
   },
   "rules": {
+    "@typescript-eslint/no-var-requires": [0],
+    "no-global-assign": [
+      0
+    ],
     "arrow-parens": [
       0
     ],
@@ -35,6 +39,8 @@
     "implicit-arrow-linebreak": [
       0
     ],
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
     "import/newline-after-import": [
       0
     ],

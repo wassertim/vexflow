@@ -9,7 +9,7 @@
     "outDir": "build",
     "esModuleInterop": true,
     "declaration": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "lib": [
       "es2015",
       "es2016",
@@ -28,7 +28,7 @@
     "docs",
     ".vscode",
     ".idea",
-    "node_modules",
+//    "node_modules",
     "dist"
   ]
 }

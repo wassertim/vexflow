@@ -12,6 +12,7 @@ import {Annotation} from "../annotation";
 import {ChordSymbol} from "../chordsymbol";
 import {Bend} from "../bend";
 import {Vibrato} from "../vibrato";
+import {Modifier} from "../modifier";
 
 export interface IModifierContextMetrics {
   width: number;
@@ -48,4 +49,5 @@ export type ModifierClass = StaveNote |
   Annotation |
   ChordSymbol |
   Bend |
-  Vibrato;
+  Vibrato |
+  Modifier;

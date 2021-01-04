@@ -70,7 +70,7 @@ export class ChordSymbol extends Modifier {
     return HorizontalJustify;
   }
 
-  static get horizontalJustifyString(): Record<string, number> {
+  static get horizontalJustifyString(): Record<string, HorizontalJustify> {
     return {
       left: ChordSymbol.horizontalJustify.LEFT,
       right: ChordSymbol.horizontalJustify.RIGHT,
@@ -561,7 +561,7 @@ export class ChordSymbol extends Modifier {
   // chord symbol parts easily
   // ### addText
   // Add a text block
-  addText(text: string, parameters: any): this {
+  addText(text: string, parameters?: any): this {
     parameters = parameters == null ? {} : parameters;
     parameters.text = text;
     parameters.symbolType = ChordSymbol.symbolTypes.TEXT;
@@ -586,13 +586,13 @@ export class ChordSymbol extends Modifier {
 
   // ### addGlyphSuperscript
   // add a glyph block with superscript modifier
-  addGlyphSuperscript(glyph: Glyph): this {
+  addGlyphSuperscript(glyph: Glyph|string): this {
     const symbolType = ChordSymbol.symbolTypes.GLYPH;
     const symbolModifier = ChordSymbol.symbolModifiers.SUPERSCRIPT;
     return this.addSymbolBlock({glyph, symbolType, symbolModifier});
   }
 
-  addGlyph(glyph: string, parameters: any): this {
+  addGlyph(glyph: string, parameters?: any): this {
     parameters = parameters == null ? {} : parameters;
     parameters.glyph = glyph;
     parameters.symbolType = ChordSymbol.symbolTypes.GLYPH;
@@ -604,7 +604,7 @@ export class ChordSymbol extends Modifier {
   // available, use text from the font.  E.g.:
   // `addGlyphOrText("(+5#11)")`
   // will use text for the '5' and '11', and glyphs for everything else.
-  addGlyphOrText(text: string[], parameters: any): this {
+  addGlyphOrText(text: string|string[], parameters?: any): this {
     parameters = parameters == null ? {} : parameters;
     let str = '';
     for (let i = 0; i < text.length; ++i) {
@@ -626,7 +626,7 @@ export class ChordSymbol extends Modifier {
 
   // ### Add a line of the given width, used as a continuation of the previous
   // symbol in analysis, or lyrics, etc.
-  addLine(width: number, parameters: any): this {
+  addLine(width: number, parameters?: any): this {
     parameters = parameters == null ? {} : parameters;
     parameters.symbolType = ChordSymbol.symbolTypes.LINE;
     parameters.width = width;
@@ -655,7 +655,7 @@ export class ChordSymbol extends Modifier {
 
   // Set vertical position of text (above or below stave). `just` must be
   // a value in `ChordSymbol.vertical`.
-  setVertical(just: number): this {
+  setVertical(just: number|string): this {
     this.vertical = typeof (just) === 'string'
       ? ChordSymbol.verticalJustifyString[just]
       : just;
@@ -668,7 +668,7 @@ export class ChordSymbol extends Modifier {
 
   // Get and set horizontal justification. `justification` is a value in
   // `ChordSymbol.Justify`.
-  setHorizontal(just: number): this {
+  setHorizontal(just: number|string): this {
     this.horizontal = typeof (just) === 'string'
       ? ChordSymbol.horizontalJustifyString[just]
       : just;

@@ -458,7 +458,7 @@ export const KEY_SPECS: Record<string, IKeySpec> = {
   'C#': {acc: '#', num: 7},
   'A#m': {acc: '#', num: 7},
 };
-export const accidentalList = (acc: string) => {
+export const accidentalList = (acc: string): number[] => {
   const patterns = {
     'b': [2, 0.5, 2.5, 1, 3, 1.5, 3.5],
     '#': [0, 1.5, -0.5, 1, 2.5, 0.5, 2],

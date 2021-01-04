@@ -13,17 +13,18 @@ export interface ISystemParams {
 }
 
 export interface ISystemOptions {
-  factory: Factory;
+  x: number;
+  y: number;
+  width: number;
+  noJustification: boolean;
   noPadding: boolean;
+  factory: Factory;
   debugFormatter: boolean;
   connector: any;
   spaceBetweenStaves: number;
   formatIterations: number;
-  x: number;
-  width: number;
-  y: number;
   details: any;
-  noJustification: boolean;
+  options: any;
 }
 
 export interface IDebugNoteMetrics {

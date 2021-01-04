@@ -46,6 +46,7 @@ import {BoundingBox} from "./boundingbox";
 import {RuntimeError} from "./runtimeerror";
 import {DefaultFontStack} from "./smufl";
 import {DEFAULT_TIME, LOG, Merge, MidLine, SortAndUnique} from "./flow";
+import {StemmableNote} from "./stemmablenote";
 
 // To enable logging for this class. Set `Vex.Flow.Formatter.DEBUG` to `true`.
 function L(...args: unknown[]) {
@@ -236,7 +237,7 @@ export class Formatter {
   //
   // `autobeam` automatically generates beams for the notes.
   // `align_rests` aligns rests with nearby notes.
-  static FormatAndDraw(ctx: DrawContext, stave: Stave, notes: StaveNote[], params: IFormatAndDrawOptions|boolean): BoundingBox {
+  static FormatAndDraw(ctx: DrawContext, stave: Stave, notes: StemmableNote[], params?: IFormatAndDrawOptions|boolean): BoundingBox {
     const options = {
       auto_beam: false,
       align_rests: false,
@@ -494,7 +495,7 @@ export class Formatter {
   // to `justifyWidth` pixels. `renderingContext` is required to justify elements
   // that can't retreive widths without a canvas. This method sets the `x` positions
   // of all the tickables/notes in the formatter.
-  preFormat(justifyWidth = 0, renderingContext: DrawContext, voices: Voice[], stave: Stave): number {
+  preFormat(justifyWidth = 0, renderingContext?: DrawContext, voices?: Voice[], stave?: Stave): number {
     // Initialize context maps.
     const contexts = this.tickContexts;
     const {list: contextList, map: contextMap} = contexts;
@@ -767,7 +768,7 @@ export class Formatter {
   //
   // Alpha is the "learning rate" for the formatter. It determines how much of a shift
   // the formatter should make based on its cost function.
-  tune(options: IFormatterTuneOptions): number {
+  tune(options?: IFormatterTuneOptions): number {
     options = {
       alpha: 0.5,
       ...options,
@@ -845,7 +846,7 @@ export class Formatter {
   //
   // Set `options.context` to the rendering context. Set `options.align_rests`
   // to true to enable rest alignment.
-  format(voices: Voice[], justifyWidth: number, options?: IFormatOptions): this {
+  format(voices: Voice[], justifyWidth?: number, options?: IFormatOptions): this {
     const opts = {
       align_rests: false,
       context: null,
@@ -870,7 +871,7 @@ export class Formatter {
 
   // This method is just like `format` except that the `justifyWidth` is inferred
   // from the `stave`.
-  formatToStave(voices: Voice[], stave: Stave, options: IFormatOptions): this {
+  formatToStave(voices: Voice[], stave: Stave, options?: IFormatOptions): this {
     options = {
       padding: 10,
       ...options

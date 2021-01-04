@@ -41,10 +41,10 @@ export interface IFactoryOptions {
 
 export interface IFactoryParams {
   slur: boolean;
-  alterKey: string;
+  alterKey: string|string[];
   cancelKey: string;
   key: string;
-  time: string;
+  time: any;
   options: IStaveOptions;
   x: number;
   y: number;

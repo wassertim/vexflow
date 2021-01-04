@@ -90,7 +90,7 @@ export class Clef extends StaveModifier {
 
   // Create a new clef. The parameter `clef` must be a key from
   // `Clef.types`.
-  constructor(type: string, size: string, annotation: string) {
+  constructor(type: string, size?: string, annotation?: string) {
     super();
     this.setAttribute('type', 'Clef');
 

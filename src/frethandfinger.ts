@@ -13,7 +13,8 @@ import {RuntimeError} from "./runtimeerror";
  * @constructor
  */
 export class FretHandFinger extends Modifier {
-  private finger: any;
+  finger: string;
+
   private x_offset: number;
   private y_offset: number;
   private font: IFont;

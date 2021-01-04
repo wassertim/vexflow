@@ -118,7 +118,7 @@ export class Fraction {
     return this.set(u, lcm);
   }
 
-  subtract(param1: Fraction, param2?: Fraction): this {
+  subtract(param1: Fraction|number, param2?: Fraction|number): this {
     let otherNumerator;
     let otherDenominator;
 
@@ -171,7 +171,7 @@ export class Fraction {
     return this.set(this.numerator * otherNumerator, this.denominator * otherDenominator);
   }
 
-  divide(param1: Fraction, param2: Fraction): this {
+  divide(param1: Fraction|number, param2?: Fraction|number): this {
     let otherNumerator;
     let otherDenominator;
 
@@ -204,26 +204,26 @@ export class Fraction {
   }
 
   // Greater than operator.
-  greaterThan(compare: Fraction): boolean {
+  greaterThan(compare: Fraction|number): boolean {
     const a = Fraction.__compareB.copy(this);
     a.subtract(compare);
     return (a.numerator > 0);
   }
 
   // Greater than or equals operator.
-  greaterThanEquals(compare: Fraction): boolean {
+  greaterThanEquals(compare: Fraction|number): boolean {
     const a = Fraction.__compareB.copy(this);
     a.subtract(compare);
     return (a.numerator >= 0);
   }
 
   // Less than operator.
-  lessThan(compare: Fraction): boolean {
+  lessThan(compare: Fraction|number): boolean {
     return !(this.greaterThanEquals(compare));
   }
 
   // Less than or equals operator.
-  lessThanEquals(compare: Fraction): boolean {
+  lessThanEquals(compare: Fraction|number): boolean {
     return !(this.greaterThan(compare));
   }
 

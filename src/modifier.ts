@@ -28,11 +28,11 @@ export enum Position {
 // To enable logging for this class. Set `Vex.Flow.Modifier.DEBUG` to `true`.
 // function L(...args) { if (Modifier.DEBUG) LOG('Vex.Flow.Modifier', args); }
 export class Modifier extends Element {
-  public note: Note;
+  note: Note;
+  position: Position;
 
   protected width: number;
   protected text_line: number;
-  protected position: Position;
   protected y_shift: number;
   protected index: number;
   protected x_shift: number;

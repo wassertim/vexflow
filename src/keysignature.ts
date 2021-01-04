@@ -23,7 +23,7 @@ export class KeySignature extends StaveModifier {
   private cancelKeySpec: string;
   private accList: IAccItem[];
   private keySpec: string;
-  private alterKeySpec: string;
+  private alterKeySpec: string|string[];
 
   static get CATEGORY(): string {
     return 'keysignatures';
@@ -93,7 +93,7 @@ export class KeySignature extends StaveModifier {
   }
 
   // Create a new Key Signature based on a `key_spec`
-  constructor(keySpec: string, cancelKeySpec: string, alterKeySpec?: string) {
+  constructor(keySpec: string, cancelKeySpec?: string, alterKeySpec?: string|string[]) {
     super();
     this.setAttribute('type', 'KeySignature');
 
@@ -257,7 +257,7 @@ export class KeySignature extends StaveModifier {
     return this.width;
   }
 
-  setKeySig(keySpec: string, cancelKeySpec: string, alterKeySpec?: string): this {
+  setKeySig(keySpec: string, cancelKeySpec: string, alterKeySpec?: string|string[]): this {
     this.formatted = false;
     this.keySpec = keySpec;
     this.cancelKeySpec = cancelKeySpec;
@@ -276,7 +276,7 @@ export class KeySignature extends StaveModifier {
     return this;
   }
 
-  convertToAlterAccList(alterKeySpec: string): void {
+  convertToAlterAccList(alterKeySpec: string|string[]): void {
     const max = Math.min(alterKeySpec.length, this.accList.length);
     for (let i = 0; i < max; ++i) {
       if (alterKeySpec[i]) {

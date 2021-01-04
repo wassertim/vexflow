@@ -50,8 +50,8 @@ export class Beam extends Element {
   notes: Note[];
   postFormatted: boolean;
   slope: number;
+  readonly stem_direction: number;
 
-  private readonly stem_direction: number;
   private readonly ticks: number;
 
   private y_shift: number;
@@ -152,7 +152,7 @@ export class Beam extends Element {
   //    * `show_stemlets` - Set to `true` to draw stemlets for rests
   //    * `maintain_stem_directions` - Set to `true` to not apply new stem directions
   //
-  static generateBeams(notes: Tickable[], config: IGenerateBeamConfig): Beam[] {
+  static generateBeams(notes: Tickable[], config?: IGenerateBeamConfig): Beam[] {
     if (!config) config = {} as IGenerateBeamConfig;
 
     if (!config.groups || !config.groups.length) {

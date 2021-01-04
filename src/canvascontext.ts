@@ -4,12 +4,10 @@
 // A rendering context for the Raphael backend.
 //
 // Copyright Mohit Cheppudira 2010
-import {ISize} from "./types/common";
 import {WARN} from "./flow";
 
-/** @constructor */
 export class CanvasContext {
-  private canvas: ISize;
+  private canvas: HTMLCanvasElement;
   private background_fillStyle: string;
   private vexFlowCanvasContext: CanvasRenderingContext2D;
 
@@ -47,7 +45,7 @@ export class CanvasContext {
     // property
     this.vexFlowCanvasContext = context;
     if (!context.canvas) {
-      this.canvas = {
+      this.canvas = <HTMLCanvasElement>{
         width: CanvasContext.WIDTH,
         height: CanvasContext.HEIGHT,
       };
@@ -129,8 +127,9 @@ export class CanvasContext {
     return this;
   }
 
-  scale(x: number, y: number): void {
-    return this.vexFlowCanvasContext.scale(parseFloat(x.toString()), parseFloat(y.toString()));
+  scale(x: number, y: number): this {
+    this.vexFlowCanvasContext.scale(parseFloat(x.toString()), parseFloat(y.toString()));
+    return this;
   }
 
   resize(width: string, height: string): any {

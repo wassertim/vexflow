@@ -1,4 +1,4 @@
-import {Note} from "../note";
+import {StaveNote} from "../stavenote";
 
 export interface IBuilderOptions {
   clef: string;
@@ -6,7 +6,7 @@ export interface IBuilderOptions {
 }
 
 export interface IBuilderElements {
-  notes: Note[];
+  notes: StaveNote[];
   accidentals: any[]
 }
 

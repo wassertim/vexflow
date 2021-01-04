@@ -5,5 +5,5 @@ export interface ITextBracketParams {
   stop: Note;
   text: string;
   superscript: string;
-  position: number;
+  position: number|string;
 }

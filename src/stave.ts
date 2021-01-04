@@ -18,7 +18,7 @@ import {
 } from "./types/common";
 import {IFont} from "./types/font";
 import {IStaveLineConfig, IStaveOptions, IStaveTextOptions} from "./types/stave";
-import {Merge, STAVE_LINE_THICKNESS} from "./flow";
+import {Merge, SETTINGS} from "./flow";
 import {RuntimeError} from "./runtimeerror";
 
 export class Stave extends Element {
@@ -136,8 +136,8 @@ export class Stave extends Element {
     return this.options.num_lines;
   }
 
-  setNumLines(lines: string): this {
-    this.options.num_lines = parseInt(lines, 10);
+  setNumLines(lines: string|number): this {
+    this.options.num_lines = typeof lines === "string" ? parseInt(lines, 10) : lines;
     this.resetLines();
     return this;
   }
@@ -148,11 +148,11 @@ export class Stave extends Element {
   }
 
   getTopLineTopY(): number {
-    return this.getYForLine(0) - (STAVE_LINE_THICKNESS / 2);
+    return this.getYForLine(0) - (SETTINGS.STAVE_LINE_THICKNESS / 2);
   }
 
   getBottomLineBottomY(): number {
-    return this.getYForLine(this.getNumLines() - 1) + (STAVE_LINE_THICKNESS / 2);
+    return this.getYForLine(this.getNumLines() - 1) + (SETTINGS.STAVE_LINE_THICKNESS / 2);
   }
 
   setX(x: number): this {
@@ -188,7 +188,7 @@ export class Stave extends Element {
     return {
       fillStyle: this.options.fill_style,
       strokeStyle: this.options.fill_style, // yes, this is correct for legacy compatibility
-      lineWidth: STAVE_LINE_THICKNESS, ...(this.style as IStyle) || {}
+      lineWidth: SETTINGS.STAVE_LINE_THICKNESS, ...(this.style as IStyle) || {}
     } as IStyle;
   }
 
@@ -258,7 +258,7 @@ export class Stave extends Element {
   }
 
   // Text functions
-  setText(text: string, position: number, options: IStaveTextOptions): this {
+  setText(text: string, position: number, options?: IStaveTextOptions): this {
     this.modifiers.push(new StaveText(text, position, options));
     return this;
   }
@@ -366,7 +366,7 @@ export class Stave extends Element {
     return this;
   }
 
-  setClef(clefSpec: string, size: string, annotation: string, position: number): this {
+  setClef(clefSpec: string, size?: string, annotation?: string, position?: number): this {
     if (position === undefined) {
       position = StaveModifier.Position.BEGIN;
     }
@@ -387,12 +387,12 @@ export class Stave extends Element {
     return this;
   }
 
-  setEndClef(clefSpec: string, size: string, annotation: string): this {
+  setEndClef(clefSpec: string, size?: string, annotation?: string): this {
     this.setClef(clefSpec, size, annotation, StaveModifier.Position.END);
     return this;
   }
 
-  setKeySignature(keySpec: string, cancelKeySpec: string, position: number): this {
+  setKeySignature(keySpec: string, cancelKeySpec?: string, position?: number): this {
     if (position === undefined) {
       position = StaveModifier.Position.BEGIN;
     }
@@ -407,12 +407,12 @@ export class Stave extends Element {
     return this;
   }
 
-  setEndKeySignature(keySpec: string, cancelKeySpec: string): this {
+  setEndKeySignature(keySpec: string, cancelKeySpec?: string): this {
     this.setKeySignature(keySpec, cancelKeySpec, StaveModifier.Position.END);
     return this;
   }
 
-  setTimeSignature(timeSpec: string, customPadding: number, position: number): this {
+  setTimeSignature(timeSpec: string, customPadding?: number, position?: number): this {
     if (position === undefined) {
       position = StaveModifier.Position.BEGIN;
     }
@@ -427,12 +427,12 @@ export class Stave extends Element {
     return this;
   }
 
-  setEndTimeSignature(timeSpec: string, customPadding: number): this {
+  setEndTimeSignature(timeSpec: string, customPadding?: number): this {
     this.setTimeSignature(timeSpec, customPadding, StaveModifier.Position.END);
     return this;
   }
 
-  addKeySignature(keySpec: string, cancelKeySpec: string, position: number): this {
+  addKeySignature(keySpec: string, cancelKeySpec?: string, position?: number): this {
     if (position === undefined) {
       position = StaveModifier.Position.BEGIN;
     }
@@ -452,7 +452,7 @@ export class Stave extends Element {
     return this;
   }
 
-  addEndClef(clef: string, size: string, annotation: string): this {
+  addEndClef(clef: string, size?: string, annotation?: string): this {
     this.addClef(clef, size, annotation, StaveModifier.Position.END);
     return this;
   }
@@ -462,7 +462,7 @@ export class Stave extends Element {
     return this;
   }
 
-  addEndTimeSignature(timeSpec: string, customPadding: number): this {
+  addEndTimeSignature(timeSpec: string, customPadding?: number): this {
     this.addTimeSignature(timeSpec, customPadding, StaveModifier.Position.END);
     return this;
   }
@@ -473,7 +473,7 @@ export class Stave extends Element {
     return this;
   }
 
-  getModifiers(position: number, category?: string): StaveModifier[] {
+  getModifiers(position?: number, category?: string): StaveModifier[] {
     if (position === undefined && category === undefined) return this.modifiers;
 
     return this.modifiers.filter(modifier =>
@@ -644,7 +644,7 @@ export class Stave extends Element {
 
   // Draw Simple barlines for backward compatability
   // Do not delete - draws the beginning bar of the stave
-  drawVertical(x: number, isDouble: boolean): void {
+  drawVertical(x: number, isDouble?: boolean): void {
     this.drawVerticalFixed(this.x + x, isDouble);
   }
 

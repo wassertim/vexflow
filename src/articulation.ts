@@ -161,8 +161,7 @@ const getInitialOffset = (note: StaveNote, position: number) => {
 
 export class Articulation extends Modifier {
   note: StaveNote;
-
-  private readonly type: string;
+  readonly type: string;
 
   private render_options: IArticulationRenderOptions;
   private articulation: IArticulation;

@@ -6,7 +6,7 @@ import {Stave} from "./stave";
 import {IFont} from "./types/font";
 import {IStaveConnectorTextOptions} from "./types/staveconnector";
 import {RuntimeError} from "./runtimeerror";
-import {Merge, STAVE_LINE_THICKNESS} from "./flow";
+import {Merge, SETTINGS} from "./flow";
 
 function drawBoldDoubleLine(ctx: DrawContext, type: number, topX: number, topY: number, botY: number) {
   if (
@@ -83,7 +83,7 @@ export class StaveConnector extends Element {
     super();
     this.setAttribute('type', 'StaveConnector');
 
-    this.thickness = STAVE_LINE_THICKNESS;
+    this.thickness = SETTINGS.STAVE_LINE_THICKNESS;
     this.width = 3;
     this.top_stave = top_stave;
     this.bottom_stave = bottom_stave;
@@ -99,7 +99,7 @@ export class StaveConnector extends Element {
     this.texts = [];
   }
 
-  setType(type: number): this {
+  setType(type: number|string): this {
     type = typeof (type) === 'string'
       ? StaveConnector.typeString[type]
       : type;
@@ -110,7 +110,7 @@ export class StaveConnector extends Element {
     return this;
   }
 
-  setText(text: string, options: IStaveConnectorTextOptions): this {
+  setText(text: string, options?: IStaveConnectorTextOptions): this {
     this.texts.push({
       content: text,
       options: Merge<IStaveConnectorTextOptions>({shift_x: 0, shift_y: 0}, options),

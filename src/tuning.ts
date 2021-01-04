@@ -49,8 +49,8 @@ export class Tuning {
     }
   }
 
-  getValueForString(stringNum: string): number {
-    const s = parseInt(stringNum, 10);
+  getValueForString(stringNum: string|number): number {
+    const s = typeof stringNum === "string" ? parseInt(stringNum, 10) : stringNum;
     if (s < 1 || s > this.numStrings) {
       throw new RuntimeError(
         'BadArguments', `String number must be between 1 and ${this.numStrings}:${stringNum}`
@@ -60,9 +60,9 @@ export class Tuning {
     return this.tuningValues[s - 1];
   }
 
-  getValueForFret(fretNum: string, stringNum: string): number {
+  getValueForFret(fretNum: string|number, stringNum: string|number): number {
     const stringValue = this.getValueForString(stringNum);
-    const f = parseInt(fretNum, 10);
+    const f = typeof fretNum === "string" ? parseInt(fretNum, 10) : fretNum;
 
     if (f < 0) {
       throw new RuntimeError('BadArguments', 'Fret number must be 0 or higher: ' +
@@ -72,7 +72,7 @@ export class Tuning {
     return stringValue + f;
   }
 
-  getNoteForFret(fretNum: string, stringNum: string): string {
+  getNoteForFret(fretNum: string|number, stringNum: string|number): string {
     const noteValue = this.getValueForFret(fretNum, stringNum);
 
     const octave = Math.floor(noteValue / 12);

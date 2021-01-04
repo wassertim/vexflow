@@ -83,7 +83,7 @@ export class Tuplet extends Element {
     return 15;
   }
 
-  constructor(notes: Note[], options: IStaveOptions) {
+  constructor(notes: Note[], options?: IStaveOptions) {
     super();
     this.setAttribute('type', 'Tuplet');
     if (!notes || !notes.length) {

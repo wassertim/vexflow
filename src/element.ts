@@ -100,6 +100,10 @@ export class Element {
     // do nothing
   }
 
+  addModifier(a, b): void {
+    // do nothing
+  }
+
   // An element can have multiple class labels.
   hasClass(className: string): boolean {
     return (this.attrs.classes[className] === true);

@@ -5,7 +5,7 @@ import {IStaveOptions} from "./types/stave";
 import {Merge} from "./flow";
 
 export class TabStave extends Stave {
-  constructor(x: number, y: number, width: number, options: IStaveOptions) {
+  constructor(x: number, y: number, width: number, options?: IStaveOptions) {
     const tab_options = {
       spacing_between_lines_px: 13,
       num_lines: 6,

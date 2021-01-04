@@ -415,7 +415,7 @@ export class EasyScore {
     return this.builder.getElements().notes;
   }
 
-  voice(notes: StaveNote[], voiceOptions: any): Voice {
+  voice(notes: Note[], voiceOptions?: any): Voice {
     voiceOptions = {time: this.defaults.time, ...voiceOptions};
     return this.factory.Voice(voiceOptions).addTickables(notes);
   }

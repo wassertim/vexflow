@@ -126,7 +126,7 @@ export class Annotation extends Modifier {
   }
 
   // Set font family, size, and weight. E.g., `Arial`, `10pt`, `Bold`.
-  setFont(family: string, size: number, weight: string): this {
+  setFont(family: string, size: number, weight?: string): this {
     this.font = {family, size, weight} as IFont;
     return this;
   }

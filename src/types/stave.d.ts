@@ -8,11 +8,12 @@ export interface IStaveLineConfig {
 
 export interface IStaveOptions {
   [name: string]: any;
-  spacing: 2,
-  thickness: 2,
-  x_shift: 0,
-  y_shift: 10,
-  position_end: number;
+  annotation: string;
+  spacing: number,
+  thickness: number,
+  x_shift: number,
+  y_shift: number,
+  position_end: string|number;
   invert: boolean;
   cps: ICoordinates[];
   bottom_text_position: number;
@@ -36,8 +37,15 @@ export interface IStaveOptions {
   direction: number;
   harsh: boolean;
   superscript: string;
-  position: number;
+  position: string|number;
   style: string;
+  num_notes: number;
+  notes_occupied: number;
+  ratioed: boolean;
+  location: number;
+  bracketed: boolean;
+  text: string;
+  line: number;
 }
 
 export interface IStaveTextOptions {

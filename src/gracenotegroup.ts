@@ -27,7 +27,7 @@ export class GraceNoteGroup extends Modifier {
   static DEBUG: boolean;
 
   private readonly voice: Voice;
-  private readonly grace_notes: GraceNote[];
+  private readonly grace_notes: Note[];
   private readonly show_slur: boolean;
 
   private preFormatted: boolean;
@@ -92,7 +92,7 @@ export class GraceNoteGroup extends Modifier {
   //
   // `GraceNoteGroup` inherits from `Modifier` and is placed inside a
   // `ModifierContext`.
-  constructor(grace_notes: GraceNote[], show_slur: boolean) {
+  constructor(grace_notes: Note[], show_slur?: boolean) {
     super();
     this.setAttribute('type', 'GraceNoteGroup');
 
@@ -137,7 +137,7 @@ export class GraceNoteGroup extends Modifier {
     this.preFormatted = true;
   }
 
-  beamNotes(grace_notes: GraceNote[]): this {
+  beamNotes(grace_notes?: Note[]): this {
     grace_notes = grace_notes || this.grace_notes;
     if (grace_notes.length > 1) {
       const beam = new Beam(grace_notes);
@@ -165,7 +165,7 @@ export class GraceNoteGroup extends Modifier {
     return this.width;
   }
 
-  getGraceNotes(): GraceNote[] {
+  getGraceNotes(): Note[] {
     return this.grace_notes;
   }
 

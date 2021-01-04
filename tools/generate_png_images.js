@@ -13,21 +13,22 @@ document = dom.window.document;
 const fs = require('fs');
 const [scriptDir, imageDir] = process.argv.slice(2, 4);
 
-const Vex = require(`${ scriptDir }/vexflow-debug.js`);
-Vex.Flow.Test = require(`${ scriptDir }/vexflow-tests.js`);
-
-const VF = Vex.Flow;
+// const Vex = require(`${ scriptDir }/vexflow-debug.js`);
+let Vex = require(`${ scriptDir }/vexflow-tests.js`);
 
 // Tell VexFlow that we're outside the browser -- just run
 // the Node tests.
-VF.Test.RUN_CANVAS_TESTS = false;
-VF.Test.RUN_SVG_TESTS = false;
-VF.Test.RUN_RAPHAEL_TESTS = false;
-VF.Test.RUN_NODE_TESTS = true;
-VF.Test.NODE_IMAGEDIR = imageDir;
+const options = {
+  RUN_CANVAS_TESTS: false,
+  RUN_SVG_TESTS: false,
+  RUN_RAPHAEL_TESTS: false,
+  RUN_NODE_TESTS: true,
+  NODE_IMAGEDIR: imageDir,
+  fs
+};
 
 // Create the image directory if it doesn't exist.
-fs.mkdirSync(VF.Test.NODE_IMAGEDIR, { recursive: true });
+fs.mkdirSync(imageDir, { recursive: true });
 
 // Run all tests.
-VF.Test.run();
+Vex.Test.run(options);

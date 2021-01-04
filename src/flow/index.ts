@@ -30,7 +30,9 @@ export const STEM_HEIGHT = 35;
 export const RESOLUTION = 16384;
 export const DEFAULT_NOTATION_FONT_SCALE = 39;
 export const DEFAULT_TABLATURE_FONT_SCALE = 39;
-export const STAVE_LINE_THICKNESS = 1;
+export const SETTINGS = {
+  STAVE_LINE_THICKNESS: 1
+}
 export const STEM_WIDTH = 1.5;
 export const DEFAULT_TIME = {num_beats: 4, beat_value: 4, resolution: RESOLUTION};
 export {WARN, LOG};

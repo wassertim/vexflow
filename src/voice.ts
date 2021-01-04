@@ -24,6 +24,9 @@ export enum Mode {
 }
 
 export class Voice extends Element {
+  readonly totalTicks: Fraction;
+  readonly ticksUsed: Fraction;
+
   private resolutionMultiplier: number;
   private smallestTickCount: Fraction;
   private stave: Stave;
@@ -33,8 +36,6 @@ export class Voice extends Element {
   private preFormatted: boolean;
   private options: IStaveOptions;
 
-  private readonly totalTicks: Fraction;
-  private readonly ticksUsed: Fraction;
   private readonly largestTickWidth: number;
   private readonly tickables: Note[];
   private readonly time: IVoiceTime|string;
@@ -49,7 +50,7 @@ export class Voice extends Element {
     return Mode;
   }
 
-  constructor(time: IVoiceTime|string, options?: IStaveOptions) {
+  constructor(time?: IVoiceTime|string, options?: IStaveOptions) {
     super();
     this.setAttribute('type', 'Voice');
 

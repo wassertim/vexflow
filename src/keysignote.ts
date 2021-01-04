@@ -9,7 +9,7 @@ import {BoundingBox} from "./boundingbox";
 export class KeySigNote extends Note {
   private keySignature: KeySignature;
 
-  constructor(keySpec: string, cancelKeySpec: string, alterKeySpec: string) {
+  constructor(keySpec: string, cancelKeySpec: string, alterKeySpec: string|string[]) {
     super({duration: 'b'} as IStaveNoteStruct);
     this.setAttribute('type', 'KeySigNote');
 

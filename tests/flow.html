@@ -5,11 +5,11 @@
   <title>VexFlow 2 - JavaScript Music Notation and Guitar Tab</title>
   <link rel="stylesheet" href="flow.css" type="text/css" media="screen" />
   <!-- VexFlow Sources -->
-  <script src="../build/vexflow-debug.js"></script>
+<!--  <script src="../build/vexflow-debug.js"></script>-->
 
   <!-- Test Dependencies: jQuery, QUnit -->
   <link rel="stylesheet" href="support/qunit.css" type="text/css" media="screen" />
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500&display=swap" rel="stylesheet">
   <script src="support/jquery.js"></script>
   <script src="support/qunit.js"></script>
 
@@ -17,15 +17,6 @@
        the measureText cache, since the index contains weird unicode
        characters. -->
   <script src="../build/vexflow-tests.js" charset="utf-8"></script>
-
-  <script>
-    $(function() {
-      // Show only failed tests.
-      QUnit.config.hidepassed = true;
-      QUnit.config.noglobals = true;
-      VF.Test.run();
-    });
-  </script>
 </head>
 
 <body>
@@ -49,5 +40,13 @@
       [ <a href="http://0xfe.muthanna.com">0xfe</a> ]
     </p>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Show only failed tests.
+      QUnit.config.hidepassed = true;
+      QUnit.config.noglobals = true;
+      Vex.Test.run();
+    });
+  </script>
 </body>
 </html>

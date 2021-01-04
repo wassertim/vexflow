@@ -353,7 +353,7 @@ export class Music {
    *
    * E.g., Given the scale C, and the note E, returns M3
    */
-  getIntervalBetween(note1: number, note2: number, direction: number): number {
+  getIntervalBetween(note1: number, note2: number, direction?: number): number {
     if (direction == null) direction = 1;
 
     if (direction !== 1 && direction !== -1) {

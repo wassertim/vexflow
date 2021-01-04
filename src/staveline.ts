@@ -127,7 +127,7 @@ export enum TextJustification {
 }
 
 export class StaveLine extends Element {
-  private readonly render_options: IStaveLineRenderOptions;
+  readonly render_options: IStaveLineRenderOptions;
 
   private text: string;
   private font: IFont;

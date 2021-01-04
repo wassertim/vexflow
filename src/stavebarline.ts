@@ -4,7 +4,7 @@
 import {StaveModifier} from './stavemodifier';
 import {Stave} from "./stave";
 import {ILayoutMetrics} from "./types/common";
-import {STAVE_LINE_THICKNESS} from "./flow";
+import {SETTINGS} from "./flow";
 
 export enum Type {
   SINGLE = 1,
@@ -50,7 +50,7 @@ export class Barline extends StaveModifier {
   constructor(type: number | string) {
     super();
     this.setAttribute('type', 'Barline');
-    this.thickness = STAVE_LINE_THICKNESS;
+    this.thickness = SETTINGS.STAVE_LINE_THICKNESS;
 
     const TYPE = Barline.type;
     this.widths = {};

@@ -167,7 +167,7 @@ export class Factory {
     return this.options.stave.space * spacing;
   }
 
-  Stave(params: IFactoryParams): Stave {
+  Stave(params?: IFactoryParams): Stave {
     params = setDefaults(params, {
       x: 0,
       y: 0,
@@ -184,7 +184,7 @@ export class Factory {
     return stave;
   }
 
-  TabStave(params: IFactoryParams): TabStave {
+  TabStave(params?: IFactoryParams): TabStave {
     params = setDefaults(params, {
       x: 0,
       y: 0,
@@ -209,7 +209,7 @@ export class Factory {
     return note;
   }
 
-  GlyphNote(glyph: Glyph, noteStruct: IStaveNoteStruct, options: IGlyphNoteOptions): GlyphNote {
+  GlyphNote(glyph: Glyph, noteStruct: IStaveNoteStruct, options?: IGlyphNoteOptions): GlyphNote {
     const note = new GlyphNote(glyph, noteStruct, options);
     if (this.stave) note.setStave(this.stave);
     note.setContext(this.context);
@@ -217,7 +217,7 @@ export class Factory {
     return note;
   }
 
-  RepeatNote(type: string, noteStruct: INoteStruct, options: IGlyphNoteOptions): RepeatNote {
+  RepeatNote(type: string, noteStruct?: INoteStruct, options?: IGlyphNoteOptions): RepeatNote {
     const note = new RepeatNote(type, noteStruct, options);
     if (this.stave) note.setStave(this.stave);
     note.setContext(this.context);
@@ -241,7 +241,7 @@ export class Factory {
     return textNote;
   }
 
-  BarNote(params: IFactoryParams): BarNote {
+  BarNote(params?: IFactoryParams): BarNote {
     params = setDefaults(params, {
       type: 'single',
       options: {},
@@ -438,7 +438,7 @@ export class Factory {
     return multimeasurerest;
   }
 
-  Voice(params: IFactoryParams): Voice {
+  Voice(params?: IFactoryParams): Voice {
     params = setDefaults(params, {
       time: '4/4',
       options: {},

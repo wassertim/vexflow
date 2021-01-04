@@ -2646,8 +2646,13 @@ exports.BoundingBoxComputation = BoundingBoxComputation;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CanvasContext = void 0;
+// [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
+// Mohit Muthanna <mohit@muthanna.com>
+//
+// A rendering context for the Raphael backend.
+//
+// Copyright Mohit Cheppudira 2010
 var flow_1 = __webpack_require__(/*! ./flow */ "./src/flow/index.ts");
-/** @constructor */
 var CanvasContext = /** @class */ (function () {
     function CanvasContext(context) {
         // Use a name that is unlikely to clash with a canvas context
@@ -2758,7 +2763,8 @@ var CanvasContext = /** @class */ (function () {
         return this;
     };
     CanvasContext.prototype.scale = function (x, y) {
-        return this.vexFlowCanvasContext.scale(parseFloat(x.toString()), parseFloat(y.toString()));
+        this.vexFlowCanvasContext.scale(parseFloat(x.toString()), parseFloat(y.toString()));
+        return this;
     };
     CanvasContext.prototype.resize = function (width, height) {
         var _a = CanvasContext.SanitizeCanvasDims(parseInt(width, 10), parseInt(height, 10)), w = _a[0], h = _a[1];
@@ -4942,6 +4948,9 @@ var Element = /** @class */ (function () {
     Element.prototype.draw = function (element, x_shift) {
         // do nothing
     };
+    Element.prototype.addModifier = function (a, b) {
+        // do nothing
+    };
     // An element can have multiple class labels.
     Element.prototype.hasClass = function (className) {
         return (this.attrs.classes[className] === true);
@@ -5648,7 +5657,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tabToGlyph = exports.integerToNote = exports.keyProperties = exports.Merge = exports.keySignature = exports.durationToNumber = exports.durationToTicks = exports.getGlyphProps = exports.durationToFraction = exports.ornamentCodes = exports.accidentalCodes = exports.articulationCodes = exports.textWidth = exports.sanitizeDuration = exports.drawDot = exports.SortAndUnique = exports.MidLine = exports.Prefix = exports.LOG = exports.WARN = exports.DEFAULT_TIME = exports.STEM_WIDTH = exports.STAVE_LINE_THICKNESS = exports.DEFAULT_TABLATURE_FONT_SCALE = exports.DEFAULT_NOTATION_FONT_SCALE = exports.RESOLUTION = exports.STEM_HEIGHT = exports.SLASH_NOTEHEAD_WIDTH = exports.TEXT_HEIGHT_OFFSET_HACK = void 0;
+exports.tabToGlyph = exports.integerToNote = exports.keyProperties = exports.Merge = exports.keySignature = exports.durationToNumber = exports.durationToTicks = exports.getGlyphProps = exports.durationToFraction = exports.ornamentCodes = exports.accidentalCodes = exports.articulationCodes = exports.textWidth = exports.sanitizeDuration = exports.drawDot = exports.SortAndUnique = exports.MidLine = exports.Prefix = exports.LOG = exports.WARN = exports.DEFAULT_TIME = exports.STEM_WIDTH = exports.SETTINGS = exports.DEFAULT_TABLATURE_FONT_SCALE = exports.DEFAULT_NOTATION_FONT_SCALE = exports.RESOLUTION = exports.STEM_HEIGHT = exports.SLASH_NOTEHEAD_WIDTH = exports.TEXT_HEIGHT_OFFSET_HACK = void 0;
 var runtimeerror_1 = __webpack_require__(/*! ../runtimeerror */ "./src/runtimeerror.ts");
 var tables_1 = __webpack_require__(/*! ../tables */ "./src/tables.ts");
 var glyph_1 = __webpack_require__(/*! ../glyph */ "./src/glyph.ts");
@@ -5662,7 +5671,9 @@ exports.STEM_HEIGHT = 35;
 exports.RESOLUTION = 16384;
 exports.DEFAULT_NOTATION_FONT_SCALE = 39;
 exports.DEFAULT_TABLATURE_FONT_SCALE = 39;
-exports.STAVE_LINE_THICKNESS = 1;
+exports.SETTINGS = {
+    STAVE_LINE_THICKNESS: 1
+};
 exports.STEM_WIDTH = 1.5;
 exports.DEFAULT_TIME = { num_beats: 4, beat_value: 4, resolution: exports.RESOLUTION };
 var VEX_PREFIX = 'vf-';
@@ -23037,7 +23048,7 @@ var Stave = /** @class */ (function (_super) {
         return this.options.num_lines;
     };
     Stave.prototype.setNumLines = function (lines) {
-        this.options.num_lines = parseInt(lines, 10);
+        this.options.num_lines = typeof lines === "string" ? parseInt(lines, 10) : lines;
         this.resetLines();
         return this;
     };
@@ -23046,10 +23057,10 @@ var Stave = /** @class */ (function (_super) {
         return this;
     };
     Stave.prototype.getTopLineTopY = function () {
-        return this.getYForLine(0) - (flow_1.STAVE_LINE_THICKNESS / 2);
+        return this.getYForLine(0) - (flow_1.SETTINGS.STAVE_LINE_THICKNESS / 2);
     };
     Stave.prototype.getBottomLineBottomY = function () {
-        return this.getYForLine(this.getNumLines() - 1) + (flow_1.STAVE_LINE_THICKNESS / 2);
+        return this.getYForLine(this.getNumLines() - 1) + (flow_1.SETTINGS.STAVE_LINE_THICKNESS / 2);
     };
     Stave.prototype.setX = function (x) {
         var shift = x - this.x;
@@ -23077,7 +23088,7 @@ var Stave = /** @class */ (function (_super) {
         return this.width;
     };
     Stave.prototype.getStyle = function () {
-        return __assign({ fillStyle: this.options.fill_style, strokeStyle: this.options.fill_style, lineWidth: flow_1.STAVE_LINE_THICKNESS }, this.style || {});
+        return __assign({ fillStyle: this.options.fill_style, strokeStyle: this.options.fill_style, lineWidth: flow_1.SETTINGS.STAVE_LINE_THICKNESS }, this.style || {});
     };
     Stave.prototype.setMeasure = function (measure) {
         this.measure = measure;
@@ -23587,7 +23598,7 @@ var Barline = /** @class */ (function (_super) {
     function Barline(type) {
         var _this = _super.call(this) || this;
         _this.setAttribute('type', 'Barline');
-        _this.thickness = flow_1.STAVE_LINE_THICKNESS;
+        _this.thickness = flow_1.SETTINGS.STAVE_LINE_THICKNESS;
         var TYPE = Barline.type;
         _this.widths = {};
         _this.widths[TYPE.SINGLE] = 5;
@@ -23850,7 +23861,7 @@ var StaveConnector = /** @class */ (function (_super) {
     function StaveConnector(top_stave, bottom_stave) {
         var _this = _super.call(this) || this;
         _this.setAttribute('type', 'StaveConnector');
-        _this.thickness = flow_1.STAVE_LINE_THICKNESS;
+        _this.thickness = flow_1.SETTINGS.STAVE_LINE_THICKNESS;
         _this.width = 3;
         _this.top_stave = top_stave;
         _this.bottom_stave = bottom_stave;
@@ -26571,6 +26582,7 @@ var Type;
     Type[Type["MID"] = 3] = "MID";
     Type[Type["END"] = 4] = "END";
     Type[Type["BEGIN_END"] = 5] = "BEGIN_END";
+    Type[Type["BEGIN_MID"] = 6] = "BEGIN_MID";
 })(Type = exports.Type || (exports.Type = {}));
 var Volta = /** @class */ (function (_super) {
     __extends(Volta, _super);
@@ -31832,7 +31844,7 @@ var Tuning = /** @class */ (function () {
         }
     };
     Tuning.prototype.getValueForString = function (stringNum) {
-        var s = parseInt(stringNum, 10);
+        var s = typeof stringNum === "string" ? parseInt(stringNum, 10) : stringNum;
         if (s < 1 || s > this.numStrings) {
             throw new runtimeerror_1.RuntimeError('BadArguments', "String number must be between 1 and " + this.numStrings + ":" + stringNum);
         }
@@ -31840,7 +31852,7 @@ var Tuning = /** @class */ (function () {
     };
     Tuning.prototype.getValueForFret = function (fretNum, stringNum) {
         var stringValue = this.getValueForString(stringNum);
-        var f = parseInt(fretNum, 10);
+        var f = typeof fretNum === "string" ? parseInt(fretNum, 10) : fretNum;
         if (f < 0) {
             throw new runtimeerror_1.RuntimeError('BadArguments', 'Fret number must be 0 or higher: ' +
                 fretNum);

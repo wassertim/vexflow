@@ -85,7 +85,7 @@ export class Bend extends Modifier {
   }
 
   // ## Prototype Methods
-  constructor(text: string, release: boolean, phrase: IPhrase[]) {
+  constructor(text: string, release?: boolean, phrase?: IPhrase[]) {
     super();
     this.setAttribute('type', 'Bend');
 

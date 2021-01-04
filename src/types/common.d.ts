@@ -228,9 +228,9 @@ export interface IStaveLineRenderOptions {
   draw_start_arrow: boolean;
   padding_left: number;
   text_justification: number;
-  color: null;
+  color: string;
   line_width: number;
-  line_dash: null;
+  line_dash: number[];
   rounded_end: boolean;
   arrowhead_length: number;
   text_position_vertical: number;
@@ -375,6 +375,10 @@ export interface IStyle {
   fillStyle: string;
   shadowBlur: number;
   shadowColor: string;
+}
+
+export interface IWithOptions {
+  options: any;
 }
 
 export type DrawContext = SVGContext | CanvasContext | RaphaelContext;

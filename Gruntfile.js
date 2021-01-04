@@ -23,18 +23,18 @@ module.exports = (grunt) => {
   const DOCCO_SOURCES = ['src/*.ts', '!src/header.ts'];
 
   // Take all test files in 'tests/' and build TARGET_TESTS
-  const TARGET_TESTS = path.join(BUILD_DIR, 'vexflow-tests.js');
+  const TARGET_TESTS = 'vexflow-tests.js';
   const TEST_SOURCES = [
-    'tests/vexflow_test_helpers.js',
-    'tests/mocks.js',
-    'tests/*_tests.js',
-    'tests/run.js',
+    'tests/vexflow_test_helpers.ts',
+    'tests/mocks.ts',
+    'tests/*_tests.ts',
+    'tests/run.ts',
   ];
 
-  function webpackConfig(target, mode) {
+  function webpackConfig(target, moduleEntry, mode) {
     return {
       mode,
-      entry: MODULE_ENTRY,
+      entry: moduleEntry,
       output: {
         path: BUILD_DIR,
         filename: target,
@@ -53,7 +53,7 @@ module.exports = (grunt) => {
         rules: [
           {
             test: /\.ts$/,
-            exclude: /node_modules/,
+            // exclude: /node_modules/,
             use: [
               {
                 loader: 'awesome-typescript-loader'
@@ -75,8 +75,9 @@ module.exports = (grunt) => {
     };
   }
 
-  const webpackProd = webpackConfig(TARGET_MIN, 'production');
-  const webpackDev = webpackConfig(TARGET_RAW, 'development');
+  const webpackProd = webpackConfig(TARGET_MIN, MODULE_ENTRY,'production');
+  const webpackTest = webpackConfig(TARGET_TESTS, 'tests/index.ts', 'development');
+  const webpackDev = webpackConfig(TARGET_RAW, MODULE_ENTRY, 'development');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -85,14 +86,15 @@ module.exports = (grunt) => {
         banner: BANNER,
         sourceMap: true,
       },
-      tests: {
-        src: TEST_SOURCES,
-        dest: TARGET_TESTS,
-      },
+      // tests: {
+      //   src: TEST_SOURCES,
+      //   dest: TARGET_TESTS,
+      // },
     },
     webpack: {
       build: webpackProd,
       buildDev: webpackDev,
+      buildTest: webpackTest,
       watch: {
         ...webpackDev,
         watch: true,
@@ -101,6 +103,9 @@ module.exports = (grunt) => {
       },
     },
     eslint: {
+      options: {
+        configFile: '.eslintrc.json'
+      },
       target: TEST_SOURCES.concat(DOCCO_SOURCES),
     },
     qunit: {
@@ -181,8 +186,8 @@ module.exports = (grunt) => {
   grunt.loadNpmTasks('grunt-webpack');
 
   // Default task(s).
-  grunt.registerTask('default', ['eslint', 'webpack:buildDev', 'webpack:build', 'concat', 'docco']);
-  grunt.registerTask('test', 'Run qunit tests.', ['webpack:buildDev', 'concat', 'qunit']);
+  grunt.registerTask('default', ['eslint', 'webpack:buildDev', 'webpack:buildTest', 'webpack:build', 'docco']);
+  grunt.registerTask('test', 'Run qunit tests.', ['webpack:buildTest', 'qunit']);
 
   // Release current build.
   grunt.registerTask('stage', 'Stage current bundles to releases/.', () => {

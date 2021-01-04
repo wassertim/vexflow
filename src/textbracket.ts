@@ -29,6 +29,8 @@ export enum Position {
 export class TextBracket extends Element {
   static DEBUG: boolean;
 
+  render_options: ITextBracketRenderOptions;
+
   private readonly text: string;
   private readonly superscript: string;
   private readonly position: Position;
@@ -37,7 +39,6 @@ export class TextBracket extends Element {
   private start: Note;
   private stop: Note;
   private font: IFont;
-  private render_options: ITextBracketRenderOptions;
 
   static get Positions(): typeof Position {
     return Position;
@@ -105,7 +106,7 @@ export class TextBracket extends Element {
 
   // Set whether the bracket line should be `dashed`. You can also
   // optionally set the `dash` pattern by passing in an array of numbers
-  setDashed(dashed: boolean, dash: number[]): this {
+  setDashed(dashed: boolean, dash?: number[]): this {
     this.render_options.dashed = dashed;
     if (dash) this.render_options.dash = dash;
     return this;

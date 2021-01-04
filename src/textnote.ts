@@ -23,7 +23,7 @@ export class TextNote extends Note {
   private readonly subscript: string;
   private readonly smooth: boolean;
 
-  private font: IFont;
+  font: IFont;
   private justification: Justification;
   private line: number;
 

@@ -73,7 +73,7 @@ export class Stroke extends Modifier {
     return true;
   }
 
-  constructor(type: number, options: never) {
+  constructor(type: number, options?: IStrokeOptions) {
     super();
     this.setAttribute('type', 'Stroke');
 
