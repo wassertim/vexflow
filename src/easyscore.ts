@@ -166,24 +166,24 @@ export class Grammar {
     } as IGrammarVal;
   }
 
-  KEY() { return { token: '[a-zA-Z][a-zA-Z0-9]*' } as IGrammarVal; }
-  DVAL() { return { token: '["][^"]*["]' } as IGrammarVal; }
-  SVAL() { return { token: "['][^']*[']" } as IGrammarVal; }
-  NOTENAME() { return { token: '[a-gA-G]' } as IGrammarVal; }
-  OCTAVE() { return { token: '[0-9]+' }as IGrammarVal;  }
-  ACCIDENTALS() { return { token: 'bbs|bb|bss|bs|b|db|d|##|#|n|\\+\\+-|\\+-|\\+\\+|\\+|k|o' }as IGrammarVal; }
-  DURATIONS() { return { token: '[0-9whq]+' } as IGrammarVal; }
-  TYPES() { return { token: '[rRsSxX]' } as IGrammarVal; }
-  LPAREN() { return { token: '[(]' } as IGrammarVal; }
-  RPAREN() { return { token: '[)]' } as IGrammarVal; }
-  COMMA() { return { token: '[,]' } as IGrammarVal; }
-  DOT() { return { token: '[.]' } as IGrammarVal; }
-  SLASH() { return { token: '[/]' } as IGrammarVal; }
-  MAYBESLASH() { return { token: '[/]?' } as IGrammarVal; }
-  EQUALS() { return { token: '[=]' } as IGrammarVal; }
-  LBRACKET() { return { token: '\\[' } as IGrammarVal; }
-  RBRACKET() { return { token: '\\]' } as IGrammarVal; }
-  EOL() { return { token: '$' } as IGrammarVal; }
+  KEY(): IGrammarVal { return { token: '[a-zA-Z][a-zA-Z0-9]*' } as IGrammarVal; }
+  DVAL(): IGrammarVal { return { token: '["][^"]*["]' } as IGrammarVal; }
+  SVAL(): IGrammarVal { return { token: "['][^']*[']" } as IGrammarVal; }
+  NOTENAME(): IGrammarVal { return { token: '[a-gA-G]' } as IGrammarVal; }
+  OCTAVE(): IGrammarVal { return { token: '[0-9]+' }as IGrammarVal;  }
+  ACCIDENTALS(): IGrammarVal { return { token: 'bbs|bb|bss|bs|b|db|d|##|#|n|\\+\\+-|\\+-|\\+\\+|\\+|k|o' }as IGrammarVal; }
+  DURATIONS(): IGrammarVal { return { token: '[0-9whq]+' } as IGrammarVal; }
+  TYPES(): IGrammarVal { return { token: '[rRsSxX]' } as IGrammarVal; }
+  LPAREN(): IGrammarVal { return { token: '[(]' } as IGrammarVal; }
+  RPAREN(): IGrammarVal { return { token: '[)]' } as IGrammarVal; }
+  COMMA(): IGrammarVal { return { token: '[,]' } as IGrammarVal; }
+  DOT(): IGrammarVal { return { token: '[.]' } as IGrammarVal; }
+  SLASH(): IGrammarVal { return { token: '[/]' } as IGrammarVal; }
+  MAYBESLASH(): IGrammarVal { return { token: '[/]?' } as IGrammarVal; }
+  EQUALS(): IGrammarVal { return { token: '[=]' } as IGrammarVal; }
+  LBRACKET(): IGrammarVal { return { token: '\\[' } as IGrammarVal; }
+  RBRACKET(): IGrammarVal { return { token: '\\]' } as IGrammarVal; }
+  EOL(): IGrammarVal { return { token: '$' } as IGrammarVal; }
 }
 
 export class Builder {
