@@ -11,7 +11,8 @@
   ],
   "rules": {
     "no-console": 1, // Means warning
-    "prettier/prettier": 2 // Means error
+    "prettier/prettier": 1, // Means error
+    "prettier/trailingComma": 0
   },
   "overrides": [
     {
@@ -19,11 +20,7 @@
       "extends": [
         "eslint:recommended",
         "prettier"
-      ],
-      "rules": {  
-        "no-console": 1, // Means warning
-        "prettier/prettier": 2, // Means error
-      }
+      ]
     },
     {
       "files": [ "src/**/*.js" ],
@@ -38,9 +35,7 @@
         "eslint:recommended",
         "prettier"
       ],
-      "rules": {  
-        "no-console": 1, // Means warning
-        "prettier/prettier": 2, // Means error
+      "rules": {
         "no-restricted-globals": 0,
         "no-undef": 0,
         "no-undef-init": 0
