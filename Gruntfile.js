@@ -1,5 +1,7 @@
 /* global module, __dirname, process, require */
 const path = require('path');
+const glob = require("glob");
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = (grunt) => {
   const BANNER = [
@@ -18,42 +20,33 @@ module.exports = (grunt) => {
   const TARGET_MIN = 'vexflow-min.js';
 
   // Used for eslint and docco
-  const SOURCES = ['src/*.ts', 'src/*.js', '!src/header.js'];
+  const SOURCES = ['./src/*.ts', './src/*.js', '!./src/header.js'];
 
   // Take all test files in 'tests/' and build TARGET_TESTS
-  const TARGET_TESTS = path.join(BUILD_DIR, 'vexflow-tests.js');
-  const TEST_SOURCES = ['tests/vexflow_test_helpers.js', 'tests/mocks.js', 'tests/*_tests.js', 'tests/run.js'];
+  const TARGET_TESTS = 'vexflow-tests.js';
+  const TEST_SOURCES = ['./tests/vexflow_test_helpers.js', './tests/mocks.js', './tests/*_tests.js', './tests/*_tests.ts', './tests/index.ts'];
 
-  function webpackConfig(target, preset, mode) {
+  function webpackConfig(target, moduleEntry, mode, libraryName, compilationTarget) {
     return {
       mode,
-      entry: MODULE_ENTRY,
+      entry: moduleEntry,
+      target: compilationTarget,
       output: {
         path: BUILD_DIR,
         filename: target,
-        library: 'Vex',
+        library: libraryName,
         libraryTarget: 'umd',
         libraryExport: 'default',
       },
       resolve: {
-        extensions: ['.ts', '.js', '.json']
+        extensions: ['.ts', '.js', '.json'],
+        plugins: [
+          new TsconfigPathsPlugin({/* options: see below */ })
+        ]
       },
       devtool: process.env.VEX_GENMAP || mode === 'production' ? 'source-map' : false,
       module: {
         rules: [
-          {
-            test: /\.js?$/,
-            exclude: /(node_modules|bower_components)/,
-            use: [
-              {
-                loader: 'babel-loader',
-                options: {
-                  presets: [preset],
-                  plugins: ['@babel/plugin-transform-object-assign'],
-                },
-              },
-            ],
-          },
           {
             test: /\.ts?$/,
             exclude: /(node_modules|bower_components)/,
@@ -67,9 +60,26 @@ module.exports = (grunt) => {
       },
     };
   }
-
-  const webpackProd = webpackConfig(TARGET_MIN, ['@babel/preset-env'], 'production');
-  const webpackDev = webpackConfig(TARGET_RAW, ['@babel/preset-env'], 'development');
+//TEST_SOURCES.flatMap(file => glob.sync(file))
+  const webpackProd = webpackConfig(TARGET_MIN, MODULE_ENTRY, 'production', 'Vex');
+  const webpackDev = webpackConfig(TARGET_RAW, MODULE_ENTRY, 'development', 'Vex');
+  const webpackVFNode = webpackConfig(
+    'vexflow-tests-[name].js',
+    { 'helpers-node': './tests/vexflow_test_helpers.js' },
+    'development',
+    'VF',
+    'node'
+  );
+  const webpackTest = webpackConfig(
+    'vexflow-tests-[name].js',
+    {
+      'helpers': './tests/vexflow_test_helpers.js',
+      'all': TEST_SOURCES.flatMap(file => glob.sync(file)),
+      'runner': './tests/run.js'
+    },
+    'development',
+    '[name]'
+  );
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -86,6 +96,8 @@ module.exports = (grunt) => {
     webpack: {
       build: webpackProd,
       buildDev: webpackDev,
+      buildTest: webpackTest,
+      buildNode: webpackVFNode,
       watch: {
         ...webpackDev,
         watch: true,
@@ -175,8 +187,8 @@ module.exports = (grunt) => {
   grunt.loadNpmTasks('grunt-webpack');
 
   // Default task(s).
-  grunt.registerTask('default', ['eslint', 'webpack:buildDev', 'webpack:build', 'concat', 'docco']);
-  grunt.registerTask('test', 'Run qunit tests.', ['webpack:buildDev', 'concat', 'qunit']);
+  grunt.registerTask('default', ['eslint', 'webpack:buildDev', 'webpack:buildTest', 'webpack:buildNode', 'docco']);
+  grunt.registerTask('test', 'Run qunit tests.', ['webpack:buildDev', 'webpack:buildTest', 'webpack:buildNode', 'qunit']);
 
   // Release current build.
   grunt.registerTask('stage', 'Stage current bundles to releases/.', () => {
