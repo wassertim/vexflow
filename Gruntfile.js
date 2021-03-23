@@ -1,7 +1,6 @@
 /* global module, __dirname, process, require */
 const path = require('path');
 const glob = require("glob");
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = (grunt) => {
   const BANNER = [
@@ -40,9 +39,6 @@ module.exports = (grunt) => {
       },
       resolve: {
         extensions: ['.ts', '.js', '.json'],
-        plugins: [
-          new TsconfigPathsPlugin({/* options: see below */ })
-        ]
       },
       devtool: process.env.VEX_GENMAP || mode === 'production' ? 'source-map' : false,
       module: {
@@ -106,7 +102,7 @@ module.exports = (grunt) => {
       },
     },
     eslint: {
-      target: SOURCES.concat('./tests'),
+      target: SOURCES.concat('./tests/**/*.?s'),
       options: { fix: true },
     },
     qunit: {
@@ -187,8 +183,8 @@ module.exports = (grunt) => {
   grunt.loadNpmTasks('grunt-webpack');
 
   // Default task(s).
-  grunt.registerTask('default', ['eslint', 'webpack:buildDev', 'webpack:buildTest', 'webpack:buildNode', 'docco']);
-  grunt.registerTask('test', 'Run qunit tests.', ['webpack:buildDev', 'webpack:buildTest', 'webpack:buildNode', 'qunit']);
+  grunt.registerTask('default', ['clean', 'eslint', 'webpack:buildDev', 'webpack:buildTest', 'webpack:buildNode', 'docco']);
+  grunt.registerTask('test', 'Run qunit tests.', ['clean', 'webpack:buildDev', 'webpack:buildTest', 'webpack:buildNode', 'qunit']);
 
   // Release current build.
   grunt.registerTask('stage', 'Stage current bundles to releases/.', () => {
